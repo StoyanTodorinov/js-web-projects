@@ -1,28 +1,109 @@
-.App {
-  text-align: center;
+body {
+  font-family: 'Shrikhand', cursive;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 100px;
+  transition: all .2s ease-in-out;
+}
+
+.App-logo:hover {
+  transform: scale(1.2);
 }
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 100px;
   padding: 20px;
   color: white;
+  border-bottom: 5px solid black;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 40px;
+}
+
+.App-header-addition-container {
+  padding-left: 10%;
+  height: 40px;
+  width: 80%;
+}
+
+.App-header-addition-item {
+  width: 24.02%;
+  height: 40px;
+  float: left;
+  border: 5px solid black;
+  text-align: center;
+  padding-top: 10px;
+  background-color: #222;
+}
+
+.App-header-addition-item:hover {
+  background-color: grey;
+}
+
+.App-header-addition-link {
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.App-header-addition {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.App-footer {
+  border-top: 5px solid black;
+  text-align: center;
+  background-color: #222;
+  height: 50px;
+  padding: 50px 0 20px 0;
+  color: white;
 }
 
 .App-intro {
+  color: white;
   font-size: large;
+  height: 800px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.App-body {
+  background-image: url("./images/home-background.jpg");
+}
+
+.nav-link {
+  color: lightblue;
+  float: right;
+  padding: 10px 10px 10px 10px;
+  display: block;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.nav-link:hover {
+  background-color: grey;
+}
+
+.nav-float-left {
+  float: left;
+  padding-left: 20px;
+}
+
+.nav-list-item {
+  display: inline;
+}
+
+.nav-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.footer-link {
+  color: lightblue;
 }
