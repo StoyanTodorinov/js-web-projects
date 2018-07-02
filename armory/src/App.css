@@ -85,6 +85,29 @@
   border: 2px solid white;
   margin: 1% 1% 1% 1.6%;
   text-align: center;
+  text-decoration: none;
+  color: white;
+  transition: all .2s ease-in-out;
+}
+
+.App-product:hover {
+  transform: scale(1.1);
+}
+
+.App-category-item {
+  width: 30%;
+  display: inline-block;
+  background-color: black;
+  border: 2px solid white;
+  margin: 1% 1% 1% 1.6%;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  transition: all .2s ease-in-out;
+}
+
+.App-category-item:hover {
+  transform: scale(1.1);
 }
 
 .App-body-title {
