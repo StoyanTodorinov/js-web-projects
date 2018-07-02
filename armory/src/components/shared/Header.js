@@ -14,10 +14,10 @@ export default class Header extends Component {
             <a className='App-title'>Welcome to the armory</a>
           </li>
           <li className='App-nav-list-item'>
-            <Link className='App-nav-link' to='/login'>Sign in</Link>
+            <Link className='App-nav-link' to='/login'>Login</Link>
           </li>
           <li className='App-nav-list-item'>
-            <Link className='App-nav-link' to='/register'>Sign up</Link>
+            <Link className='App-nav-link' to='/register'>Register</Link>
           </li>
           <li className='App-nav-list-item'>
             <Link className='App-nav-link' to='/favorites'>Favorites</Link>

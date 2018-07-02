@@ -13,20 +13,10 @@ class App extends Component {
     this.state = props
   }
 
-  async componentDidMount () {
-    return fetch('http://localhost:2000/home')
-      .then((response) => {
-        console.log(response.json())
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }
-
   render () {
     return (
       <BrowserRouter>
-        <body className='App-body'>
+        <div className='App-body'>
           <Header />
           <HeaderAddition />
           <div className='App-intro'>
@@ -35,7 +25,7 @@ class App extends Component {
             </div>
           </div>
           <Footer />
-        </body>
+        </div>
       </BrowserRouter>
     )
   }

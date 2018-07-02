@@ -5,13 +5,10 @@ import knife from '../images/knife.jpg'
 
 class Products extends Component {
   render () {
-    let title = this.props.match.params.product.toUpperCase()
+    let title = this.props.title || this.props.match.params.product.toUpperCase()
     return (
       <div>
         <div className='App-body-title'><p>{title}</p></div>
-        <Product name={'This is a knife'} imgUrl={knife} />
-        <Product name={'This is a knife'} imgUrl={knife} />
-        <Product name={'This is a knife'} imgUrl={knife} />
         <Product name={'This is a knife'} imgUrl={knife} />
         <Product name={'This is a knife'} imgUrl={knife} />
         <Product name={'This is a knife'} imgUrl={knife} />

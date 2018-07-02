@@ -16,11 +16,11 @@
 }
 
 .App-title {
-  font-size: 40px;
+  font-size: 35px;
 }
 
 .App-header-addition-container {
-  padding-left: 10%;
+  padding: 0 10% 0 10%;
   height: 40px;
   width: 80%;
 }
@@ -112,7 +112,7 @@
 
 .App-body-title {
   text-align: center;
-  font-size: 40px;
+  font-size: 35px;
 }
 
 .App-body {
@@ -150,4 +150,49 @@
 
 .App-footer-link {
   color: lightblue;
+}
+
+.App-not-found {
+  text-align: center;
+}
+
+.App-not-found-url {
+  text-decoration: brown;
+  color: lightblue;
+}
+
+.App-auth {
+  text-align: center;
+}
+
+.App-form-input {
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
+  font-size: 20px;
+  text-decoration: none;
+  outline: none;
+  display: block;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  width: 300px;  
+}
+
+.App-form-submit {
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
+  font-size: 20px;
+  text-decoration: none;
+  outline: none;
+  display: block;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  border: 2px solid black;
+  transition: all .2s ease-in-out;
+}
+
+.App-form-submit:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
