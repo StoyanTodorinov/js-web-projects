@@ -20,21 +20,21 @@
 }
 
 .App-header-addition-container {
-  padding: 0 10% 0 10%;
+  padding: 0 23% 0 23%;
   height: 40px;
-  width: 80%;
+  width: 70%;
 }
 
 .App-header-addition-link {
-  font-size: 20px;
+  font-size: 18px;
   text-decoration: none;
   color: white;
-  width: 24.02%;
-  height: 40px;
+  width: 17.5%;
+  height: 30px;
   float: left;
   border: 5px solid black;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 8px;
   background-color: #222;
 }
 
@@ -195,4 +195,27 @@
 .App-form-submit:hover {
   transform: scale(1.1);
   cursor: pointer;
+}
+
+.App-details {
+  display: inline-block;
+  width: 40%;
+  padding-left: 5%;
+}
+
+.App-details-img-container {
+  padding-left: 5%;
+  display: inline-block;
+  width: 40%;
+  height: auto;
+  border: 1px solid black;
+}
+
+.App-details-img {
+  width: 100%;
+  height: auto;
+}
+
+.App-details-comments {
+
 }

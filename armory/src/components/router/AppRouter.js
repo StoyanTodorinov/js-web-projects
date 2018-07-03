@@ -22,7 +22,6 @@ class AppRouter extends Component {
         <Route path='/categories' exact component={Category} />
         <Route path='/favorites' exact component={Favorites} />
         <Route path='/categories/:product' component={Products} />
-        <Route path='/details' component={Details} />
         <Route path='/promoes' component={Promoes} />
         <Route path='/login' component={Login} />
         <Route path='/myProfile' component={MyProfile} />
