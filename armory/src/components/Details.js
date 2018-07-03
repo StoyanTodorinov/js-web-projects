@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
+
+import Comment from '../components/shared/Comment' 
 import Knife from '../images/knife.jpg'
 
 class Details extends Component {
-  render() {
+  render () {
     let title = this.props.match.params.productId.toUpperCase()
     let knife = {
       name: 'Proelia',
       weight: '145g',
       description: 'A very beautiful stainless steel folding knife'
     }
+    let text = 'It is a nice knife'
     return (
       <div>
         <div className='App-body-title'><p>{title} details</p></div>
@@ -21,27 +24,14 @@ class Details extends Component {
           <img className='App-details-img' src={Knife} alt={title + ' image'} />
         </div>
         {/* if logged user */}
+        <div className='App-body-title'><p>Comments</p></div>
         <div className='App-details-comments'>
-          <h2>3 Comments</h2>
-          <ul>
-            <li>
-              This is an awesome knife
-            </li>
-              <ul>
-                <li>
-                  Shut up, it is too expensive
-               </li>
-               <li>
-                  Hey hey, watch your tongue!   
-               </li>
-              </ul>
-            <li>
-              Well if you ask me i think its kinda pricy for what you get
-            </li>
-            <li>
-              Totally agree with Stoyan!
-            </li>
-          </ul>
+          <Comment name={'Stoyan'} time={'10 mins'} text={text} />
+          <hr />
+          <Comment name={'Stoyan'} time={'1 year'} text={text} />
+          <hr />
+          <Comment name={'Stoyan'} time={'2 hours'} text={text} />
+          <hr />
         </div>
       </div>
     )

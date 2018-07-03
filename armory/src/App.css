@@ -20,7 +20,7 @@
 }
 
 .App-header-addition-container {
-  padding: 0 23% 0 23%;
+  margin: 0 0 0 23%;
   height: 40px;
   width: 70%;
 }
@@ -112,7 +112,7 @@
 
 .App-body-title {
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
 }
 
 .App-body {
@@ -198,17 +198,17 @@
 }
 
 .App-details {
+  margin: 0 0 0 5%;
   display: inline-block;
   width: 40%;
-  padding-left: 5%;
+  vertical-align: top;
 }
 
 .App-details-img-container {
-  padding-left: 5%;
+  margin-left: 10%;
   display: inline-block;
   width: 40%;
   height: auto;
-  border: 1px solid black;
 }
 
 .App-details-img {
@@ -217,5 +217,36 @@
 }
 
 .App-details-comments {
+  padding-left: 5%;
+  margin: 0 0 0 5%;
+  width: 85%;
+}
 
+.App-details-comments-list {
+  text-decoration: none;
+}
+
+.App-comment {
+  width: 90%;
+  font-size: 17px;
+  display: inline-block;
+}
+
+.App-comment-btn-wrapper {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.App-comment-time {
+  padding: 20px;
+}
+
+.App-comment-btn {
+  vertical-align: top;
+  font-size: 15px;
+  transition: all .2s ease-in-out;
+}
+
+.App-comment-btn:hover {
+  transform: scale(1.2);
 }

@@ -8,12 +8,12 @@ class Login extends Component {
         <form className='App-auth' method='POST'>
           <p>
             <label for='username'>
-            Username: <input className='App-form-input' type='text' id='username' name='username' />
+              Username<input className='App-form-input' type='text' id='username' name='username' />
             </label>
           </p>
           <p>
             <label for='password'>
-            Password: <input className='App-form-input' type='password' id='password' name='password' />
+              Password<input className='App-form-input' type='password' id='password' name='password' />
             </label>
           </p>
           <input className='App-form-submit' type='submit' id='password' name='password' />
