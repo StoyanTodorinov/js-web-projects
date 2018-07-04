@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "armory-api",
   "version": "1.0.0",
   "description": "",
   "main": "node ./rest/server.js",
@@ -7,10 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./rest/server.js"
   },
-  "author": "",
-  "license": "",
+  "author": "StoyanT",
+  "license": "MIT",
   "dependencies": {
+    "body-parser": "*",
+    "crypto": "1.0.1",
     "express": "*",
-    "body-parser": "*"
+    "mongoose": "5.2.1"
   }
 }
