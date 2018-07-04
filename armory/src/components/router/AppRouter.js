@@ -12,6 +12,7 @@ import Products from '../Products'
 import Promoes from '../Promoes'
 import Favorites from '../Favorites'
 import NotFound from '../NotFound'
+import Create from '../Create'
 
 class AppRouter extends Component {
   render () {
@@ -27,6 +28,7 @@ class AppRouter extends Component {
         <Route path='/myProfile' component={MyProfile} />
         <Route path='/register' component={Register} />
         <Route path='/details/:productId' component={Details} />
+        <Route path='/create' component={Create} />
         <Route path='*' component={NotFound} />
       </Switch>
     )
