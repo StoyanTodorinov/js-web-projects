@@ -13,6 +13,7 @@ import Promoes from '../Promoes'
 import Favorites from '../Favorites'
 import NotFound from '../NotFound'
 import Create from '../Create'
+import Logout from '../Logout'
 
 class AppRouter extends Component {
   render () {
@@ -29,6 +30,7 @@ class AppRouter extends Component {
         <Route path='/register' component={Register} />
         <Route path='/details/:productId' component={Details} />
         <Route path='/create' component={Create} />
+        <Route path='/logout' component={Logout} />
         <Route path='*' component={NotFound} />
       </Switch>
     )

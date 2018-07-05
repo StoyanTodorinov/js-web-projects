@@ -10,7 +10,14 @@ import './App.css'
 class App extends Component {
   constructor (props) {
     super(props)
-    this.state = props
+
+    this.state = {
+      user: {}
+    }
+  }
+
+  isLogged () {
+    return localStorage.getItem('user')
   }
 
   render () {
@@ -18,7 +25,8 @@ class App extends Component {
       <BrowserRouter>
         <div className='App-body'>
           <Header />
-          <HeaderAddition />
+          {this.isLogged() ? <HeaderAddition /> : null }
+          {/* <HeaderAddition /> */}
           <div className='App-intro'>
             <div className='App-content'>
               <AppRouter />

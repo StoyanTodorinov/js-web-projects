@@ -20,7 +20,7 @@ class MyProfile extends Component {
           </button>
         </div>
         <div className='App-details-img-container'>
-          <img className='App-details-img' src={Knife} alt={'profile picture'} />
+          <img className='App-details-img' src={Knife} alt={'Profile picture'} />
         </div>
       </div>
     )
