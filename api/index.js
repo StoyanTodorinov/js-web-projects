@@ -6,7 +6,7 @@ const app = require('express')()
 
 require('./server/config/database')(settings)
 require('./server/config/express')(app)
-require('./server/config/routes')(app)
+require('./server/router/ApiRouter')(app)
 require('./server/config/passport')()
 
 app.listen(settings.port)

@@ -1,4 +1,3 @@
-const express = require('express')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -11,6 +10,7 @@ module.exports = (app) => {
   }))
   app.set('view engine', 'handlebars')
   app.use(cookieParser())
+  app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(session({
     secret: 'neshto-taino!@#$%',
@@ -28,7 +28,11 @@ module.exports = (app) => {
     next()
   })
 
-  app.use(express.static('public'))
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    next()
+  })
 
   console.log('Express ready!')
 }

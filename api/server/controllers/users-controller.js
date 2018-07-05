@@ -1,15 +1,10 @@
 const encryption = require('../utilities/encryption')
-const User = require('mongoose').model('User')
+const services = require('../services')
 
 module.exports = {
-  registerGet: (req, res) => {
-    res.render('users/register')
-  },
-  registerPost: (req, res) => {
+  register: (req, res) => {
     let reqUser = req.body
-    console.log(reqUser)
-    // Add validations!
-
+    let jsonUser
     if (reqUser.password !== reqUser.password2) {
       res.locals.globalError = 'Passwords dont match'
       return res.render('users/register')
@@ -18,54 +13,43 @@ module.exports = {
     let salt = encryption.generateSalt()
     let hashedPassword = encryption.generateHashedPassword(salt, reqUser.password)
 
-    User.create({
-      username: reqUser.username,
-      name: reqUser.name,
-      email: reqUser.email,
-      salt: salt,
-      hashedPass: hashedPassword
-    }).then(user => {
+    services.users.register(reqUser, salt, hashedPassword).then(user => {
+      jsonUser = user
       req.logIn(user, (err, user) => {
         if (err) {
-          res.locals.globalError = err
-          res.render('users/register', user)
+          return res.json(err)
         }
+        res.json(jsonUser)
+      })
+    }).catch(err => {
+      return res.json(err)
+    })
+  },
+  login: (req, res) => {
+    let reqUser = req.body
+    let jsonUser
+    services.users.login(reqUser).then(user => {
+      if (!user) {
+        return res.json('Invalid user data')
+      }
 
-        res.redirect('/')
+      if (!user.authenticate(reqUser.password)) {
+        return res.json('Invalid password!')
+      }
+      jsonUser = user
+      req.logIn(user, (err, user) => {
+        if (err) {
+          return res.json(err)
+        }
+        res.json(jsonUser)
       })
     })
   },
-  loginGet: (req, res) => {
-    res.render('users/login')
-  },
-  loginPost: (req, res) => {
-    let reqUser = req.body
-    User
-      .findOne({ username: reqUser.username }).then(user => {
-        if (!user) {
-          res.locals.globalError = 'Invalid user data'
-          res.render('users/login')
-          return
-        }
-
-        if (!user.authenticate(reqUser.password)) {
-          res.locals.globalError = 'Invalid user data'
-          res.render('users/login')
-          return
-        }
-
-        req.logIn(user, (err, user) => {
-          if (err) {
-            res.locals.globalError = err
-            res.render('users/login')
-          }
-
-          res.redirect('/')
-        })
-      })
-  },
   logout: (req, res) => {
     req.logout()
-    res.redirect('/')
+    res.json()
+  },
+  allUsers: async (req, res) => {
+    res.json(await services.users.allUsers())
   }
 }
