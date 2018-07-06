@@ -1,7 +1,7 @@
 import * as urls from './urls'
 
-export function login (user) {
-  fetch(urls.LOGIN_URL, {
+export async function login (user) {
+  await fetch(urls.LOGIN_URL, {
     method: 'POST',
     body: JSON.stringify(user),
     headers: {
@@ -9,11 +9,15 @@ export function login (user) {
     }
   }).then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(user => setStorage(user))
+    .then(response => {
+      if (typeof response === 'object') {
+        setStorage(response)
+      }
+    })
 }
 
-export function register (user) {
-  fetch(urls.REGISTER_URL, {
+export async function register (user) {
+  await fetch(urls.REGISTER_URL, {
     method: 'POST',
     body: JSON.stringify(user),
     headers: {
@@ -21,11 +25,27 @@ export function register (user) {
     }
   }).then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(user => setStorage(user))
+    .then(response => {
+      if (typeof response === 'object') {
+        setStorage(response)
+      }
+    })
 }
 
 export function logout () {
   emptyStorage()
+}
+
+export function update (user) {
+  fetch(urls.USERS_URL, {
+    method: 'PUT',
+    body: JSON.stringify(user),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log(response))
 }
 
 function setStorage (user) {

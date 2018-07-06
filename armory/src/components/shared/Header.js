@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import logo from '../../images/logo.png'
 
-export default class Header extends Component {
+class Header extends Component {
   render () {
-    let user = localStorage.getItem('user') || false
-
     return (
       <header className='App-header' >
         <ul className='App-nav-list'>
           <li className='App-nav-list-item App-nav-float-left'>
-            <Link to='/'><img src={logo} className='App-logo' alt='logo' /></Link>
+            <Link to='/'><img src={this.props.logo} className='App-logo' alt='logo' /></Link>
           </li>
           <li className='App-nav-list-item'>
             <a className='App-title'>Welcome to the armory</a>
           </li>
-          {user
+          {this.props.isLogged
             ? <div>
               <li className='App-nav-list-item'>
                 <Link className='App-nav-link' to='/favorites'>Favorites</Link>
               </li>
               <li className='App-nav-list-item'>
-                <Link className='App-nav-link' to='/logout' onClick={this.onLogout}>Logout</Link>
+                <Link className='App-nav-link' to='/logout' onClick={this.props.logout}>Logout</Link>
               </li>
             </div>
             : <div>
@@ -38,3 +36,11 @@ export default class Header extends Component {
     )
   }
 }
+
+Header.propTypes = {
+  logo: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired
+}
+
+export default Header

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { register } from '../fetcher/users'
+import PropTypes from 'prop-types'
 
 class Register extends Component {
   constructor(props) {
@@ -20,14 +20,16 @@ class Register extends Component {
   }
 
   formSubmit = e => {
+    e.preventDefault()
     let user = {
       username: this.state.username,
       password: this.state.password,
       name: this.state.name,
       email: this.state.email,
-      password2: this.state.password2
+      password2: this.state.password2,
+      imgUrl: this.state.imgUrl
     }
-    register(user)
+    this.props.register(user)
     this.props.history.push('/')
   }
 
@@ -71,6 +73,10 @@ class Register extends Component {
       </div>
     )
   }
+}
+
+Register.propType = {
+  register: PropTypes.func.isRequired
 }
 
 export default Register

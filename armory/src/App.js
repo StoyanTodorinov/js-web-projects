@@ -1,40 +1,81 @@
 import React, { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 import HeaderAddition from './components/shared/HeaderAddition'
 import AppRouter from './components/router/AppRouter'
+import * as fetcher from './fetcher/users'
 
+import logo from './images/logo.png'
 import './App.css'
 
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
-      user: {}
+      user: localStorage.getItem('user'),
+      isLogged: localStorage.getItem('user') ? true : false
     }
   }
 
-  isLogged () {
-    return localStorage.getItem('user')
+  login = user => {
+    fetcher.login(user).then(() => {
+      this.checkLogged()
+    })
   }
 
-  render () {
+  register = user => {
+    fetcher.register(user).then(() => {
+      this.checkLogged()
+    })
+  }
+
+  logout = () => {
+    fetcher.logout()
+    this.checkLogged()
+  }
+
+  update = user => {
+    fetcher.update(user)
+  }
+
+  checkLogged = () => {
+    let user = localStorage.getItem('user')
+    this.setState({
+      user,
+      isLogged: user ? true : false
+    })
+  }
+
+  componentWillMount() {
+    this.checkLogged() 
+  }
+
+  render() {
     return (
-      <BrowserRouter>
-        <div className='App-body'>
-          <Header />
-          {this.isLogged() ? <HeaderAddition /> : null }
-          {/* <HeaderAddition /> */}
-          <div className='App-intro'>
-            <div className='App-content'>
-              <AppRouter />
-            </div>
+      <div className='App-body'>
+        <Header
+          logo={logo}
+          logout={this.logout}
+          isLogged={this.state.isLogged}
+        />
+        {this.state.isLogged ? <HeaderAddition /> : null}
+        <div className='App-intro'>
+          <div className='App-content'>
+            <AppRouter
+              user={JSON.parse(this.state.user)}
+              login={this.login}
+              register={this.register}
+              logout={this.logout}
+              isLogged={this.state.isLogged}
+              update={this.update}
+            />
           </div>
-          <Footer />
         </div>
-      </BrowserRouter>
+        <Footer />
+      </div>
     )
   }
 }

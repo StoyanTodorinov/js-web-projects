@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-
-import { login } from '../fetcher/users'
+import PropTypes from 'prop-types'
 
 class Login extends Component {
   constructor(props) {
@@ -8,7 +7,8 @@ class Login extends Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      error: ''
     }
   }
 
@@ -18,18 +18,19 @@ class Login extends Component {
   }
 
   formSubmit = e => {
+    e.preventDefault()
     let user = {
       username: this.state.username,
       password: this.state.password
     }
-    login(user)
-    this.props.history.push('/')
+    this.props.login(user)
   }
 
   render () {
     return (
       <div>
         <div className='App-body-title'><p>LOGIN</p></div>
+        <div className='App-body-error'><p>{this.state.error}</p></div>
         <form className='App-auth' onSubmit={this.formSubmit}>
           <p>
             <label>
@@ -48,6 +49,10 @@ class Login extends Component {
       </div>
     )
   }
+}
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired
 }
 
 export default Login
