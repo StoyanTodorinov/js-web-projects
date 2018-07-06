@@ -19,8 +19,26 @@ function register (user, salt, hashedPass) {
   })
 }
 
+async function update (userId, newUser) {
+  await User.findById(userId, (err, user) => {
+    if (err) {
+      console.log(err)
+    }
+    user.name = newUser.name
+    user.email = newUser.email
+    user.imgUrl = newUser.imgUrl
+
+    user.save((err) => {
+      if (err) {
+        console.log(err)
+      }
+    })
+  })
+}
+
 module.exports = {
   allUsers,
   login,
-  register
+  register,
+  update
 }

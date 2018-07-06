@@ -5,10 +5,6 @@ module.exports = {
   register: (req, res) => {
     let reqUser = req.body
     let jsonUser
-    if (reqUser.password !== reqUser.password2) {
-      res.locals.globalError = 'Passwords dont match'
-      return res.render('users/register')
-    }
 
     let salt = encryption.generateSalt()
     let hashedPassword = encryption.generateHashedPassword(salt, reqUser.password)
@@ -51,5 +47,10 @@ module.exports = {
   },
   allUsers: async (req, res) => {
     res.json(await services.users.allUsers())
+  },
+  update: async (req, res) => {
+    let newUser = req.body
+    await services.users.update(newUser._id, newUser)
+    res.json({ message: 'User updated!' })
   }
 }

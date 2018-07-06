@@ -11,6 +11,7 @@ module.exports = (app) => {
 
   apiRouter.route('/users')
     .get(controllers.users.allUsers)
+    .put(controllers.users.update)
 
   apiRouter.route('/users/register')
     .post(controllers.users.register)
