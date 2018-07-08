@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
 
-import Category from '../Category'
+import Categories from '../Categories'
 import Login from '../Login'
 import Register from '../Register'
 import AdminView from '../AdminView'
@@ -22,7 +22,7 @@ class AppRouter extends Component {
       <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/admin' component={AdminView} />
-        <Route path='/categories' exact component={Category} />
+        <Route path='/categories' exact component={Categories} />
         <Route path='/favorites' exact component={Favorites} />
         <Route path='/categories/:product' component={Products} />
         <Route path='/promoes' component={Promoes} />
