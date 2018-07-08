@@ -38,5 +38,6 @@ module.exports.seedAdminUser = () => {
       roles: ['Admin'],
       favorites: []
     })
+    console.log('Admin user generated :)')
   })
 }

@@ -22,6 +22,12 @@ module.exports = (app) => {
   apiRouter.route('/users/logout')
     .post(controllers.users.logout)
 
+  apiRouter.route('/categories')
+    .get(controllers.categories.allCategories)
+
+  apiRouter.route('/products/:categoryName')
+    .get(controllers.products.getAllProductsByCategory)
+
   apiRouter.route('*')
     .get((req, res) => res.json('Invalid url. Make sure you have written the correct url and try again'))
 
