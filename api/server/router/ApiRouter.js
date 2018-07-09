@@ -25,6 +25,12 @@ module.exports = (app) => {
   apiRouter.route('/categories')
     .get(controllers.categories.allCategories)
 
+  apiRouter.route('/products/new')
+    .get(controllers.products.getNewProducts)
+
+  apiRouter.route('/products/promo')
+    .get(controllers.products.getPromoProducts)
+
   apiRouter.route('/products/category=:categoryName')
     .get(controllers.products.getAllProductsByCategory)
 

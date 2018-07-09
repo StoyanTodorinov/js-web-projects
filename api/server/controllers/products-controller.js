@@ -8,5 +8,11 @@ module.exports = {
   getProductById: async (req, res) => {
     let productId = req.params.productId
     res.json(await services.products.getProductById(productId))
+  },
+  getPromoProducts: async (req, res) => {
+    res.json(await services.products.getPromoProducts())
+  },
+  getNewProducts: async (req, res) => {
+    res.json(await services.products.getNewProducts())
   }
 }
