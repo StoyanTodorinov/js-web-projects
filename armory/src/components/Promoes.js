@@ -1,19 +1,28 @@
 import React, { Component } from 'react'
-import Product from './shared/Product'
 
-import knife from '../images/knife.jpg'
+import * as fetcher from '../fetcher/products'
+import Products from './Products'
 
 class Promoes extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      products: []
+    }
+  }
+
+  componentDidMount () {
+    fetcher.getPromoProducts().then(products => {
+      this.setState({ products })
+    })
+  }
+
   render () {
     return (
       <div>
         <div className='App-body-title'><p>PROMOES</p></div>
-        <Product name={'This is a promo knife'} imgUrl={knife} />
-        <Product name={'This is a promo knife'} imgUrl={knife} />
-        <Product name={'This is a promo knife'} imgUrl={knife} />
-        <Product name={'This is a promo knife'} imgUrl={knife} />
-        <Product name={'This is a promo knife'} imgUrl={knife} />
-        <Product name={'This is a promo knife'} imgUrl={knife} />
+        <Products products={this.state.products} />
       </div>
     )
   }

@@ -21,3 +21,25 @@ export async function getProductById (productId) {
     })
   return product
 }
+
+export async function getPromoProducts () {
+  let products = []
+  await fetch(urls.PRODUCT_PROMO_URL)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      products = response
+    })
+  return products
+}
+
+export async function getNewProducts () {
+  let products = []
+  await fetch(urls.PRODUCT_NEW_URL)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      products = response
+    })
+  return products
+}

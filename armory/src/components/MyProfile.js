@@ -66,7 +66,7 @@ class MyProfile extends Component {
         </div>
         <div className='App-details-img-container'>
           <img className='App-details-img' src={this.state.imgUrl ||
-            'http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png'} alt={'Profile picture'} />
+            'http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png'} alt={'Profile'} />
         </div>
       </div>
     )

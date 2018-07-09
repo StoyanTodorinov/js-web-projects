@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import * as fetcher from '../fetcher/products'
-import Comment from '../components/shared/Comment'
+import Comments from '../components/Comments'
 
 class Details extends Component {
   constructor (props) {
@@ -49,16 +49,10 @@ class Details extends Component {
           </div>
           : 'Loading...'}
 
-        {/* if logged user */}
-        <div className='App-body-title'><p>Comments</p></div>
-        <div className='App-details-comments'>
-          <Comment name={'Stoyan'} time={'10 mins'} text />
-          <hr />
-          <Comment name={'Stoyan'} time={'1 year'} text />
-          <hr />
-          <Comment name={'Stoyan'} time={'2 hours'} text />
-          <hr />
-        </div>
+        {/* TODO ADD COMMENTS COMPONENT AND RENDER ALL THERE, ADD ADD COMMENT BUTTON */}
+        {localStorage.getItem('user')
+          ? <Comments productId={this.state.product._id} />
+          : ''}
       </div>
     )
   }

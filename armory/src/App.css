@@ -269,3 +269,21 @@
 .App-no-products {
   text-align: center;
 }
+
+.App-comments {
+  padding: 0;
+  margin-right: 4%;
+}
+
+.App-add-comment {
+  font-size: 20px;
+  transition: all .2s ease-in-out;
+}
+
+.App-add-comment:hover {
+  transform: scale(1.2);
+}
+
+.App-add-comment-btn {
+  text-align: center;
+}

@@ -34,6 +34,7 @@ class Comment extends Component {
             Remove
           </button>
         </div>
+        <hr />
       </div>
     )
   }

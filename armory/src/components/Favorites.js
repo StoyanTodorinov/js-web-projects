@@ -1,22 +1,18 @@
 import React, { Component } from 'react'
-import Product from './shared/Product'
 
-import knife from '../images/knife.jpg'
+import Products from './Products'
 
-class Products extends Component {
+class Favorites extends Component {
   render () {
+    let products = JSON.parse(localStorage.getItem('user')).favorites
+    console.log(products)
     return (
       <div>
         <div className='App-body-title'><p>FAVORITES</p></div>
-        <Product name={'This is a fav knife'} imgUrl={knife} />
-        <Product name={'This is a fav knife'} imgUrl={knife} />
-        <Product name={'This is a fav knife'} imgUrl={knife} />
-        <Product name={'This is a fav knife'} imgUrl={knife} />
-        <Product name={'This is a fav knife'} imgUrl={knife} />
-        <Product name={'This is a fav knife'} imgUrl={knife} />
+        <Products products={products} />
       </div>
     )
   }
 }
 
-export default Products
+export default Favorites
