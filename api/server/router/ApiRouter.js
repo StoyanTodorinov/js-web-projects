@@ -25,8 +25,11 @@ module.exports = (app) => {
   apiRouter.route('/categories')
     .get(controllers.categories.allCategories)
 
-  apiRouter.route('/products/:categoryName')
+  apiRouter.route('/products/category=:categoryName')
     .get(controllers.products.getAllProductsByCategory)
+
+  apiRouter.route('/products/product=:productId')
+    .get(controllers.products.getProductById)
 
   apiRouter.route('*')
     .get((req, res) => res.json('Invalid url. Make sure you have written the correct url and try again'))
