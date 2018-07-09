@@ -69,8 +69,8 @@ class App extends Component {
               login={this.login}
               register={this.register}
               logout={this.logout}
-              isLogged={this.state.isLogged}
               update={this.update}
+              isLogged={this.state.isLogged}
             />
           </div>
         </div>

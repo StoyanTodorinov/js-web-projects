@@ -24,7 +24,7 @@ class AppRouter extends Component {
         <Route path='/admin' component={AdminView} />
         <Route path='/categories' exact component={Categories} />
         <Route path='/favorites' exact component={Favorites} />
-        <Route path='/categories/:product' component={Products} />
+        <Route path='/categories/:categoryName' component={Products} />
         <Route path='/promoes' component={Promoes} />
         <Route path='/login' render={props => <Login {...props} login={this.props.login} />} />
         <Route path='/myProfile' render={props => <MyProfile {...props} user={this.props.user} update={this.props.update} />} />

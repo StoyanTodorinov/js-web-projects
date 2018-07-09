@@ -265,3 +265,7 @@
   font-size: 20px;
   color: red;
 }
+
+.App-no-products {
+  text-align: center;
+}
