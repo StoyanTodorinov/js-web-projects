@@ -26,14 +26,28 @@ class Comments extends Component {
     this.setState({ isEditing: !this.state.isEditing })
   }
 
+  // TODO IMPLEMENT DATE FORMATTER
+  formatTime = (date) => {
+    return 'it works'
+  }
+
   render() {
+    let comments = this.props.comments.map((comment, index) => {
+      return (
+        <Comment
+          key={index}
+          name={comment.author}
+          time={this.formatTime(comment.date)}
+          text={comment.text} 
+          isCreator={this.props.author === comment.author}
+          />
+      )
+    })
     return (
       <div className='App-comments'>
         <div className='App-body-title'><p>Comments</p></div>
         <div className='App-details-comments'>
-          <Comment name={'Stoyan'} time={'10 mins'} text />
-          <Comment name={'Stoyan'} time={'1 year'} text />
-          <Comment name={'Stoyan'} time={'2 hours'} text />
+          {comments}
           <div className='App-add-comment-btn'>
             {this.state.isEditing ? <input className='App-form-input' type='text'
               value={this.state.text} onChange={(e) => this.inputChange(e, 'text')} required /> : ''}
