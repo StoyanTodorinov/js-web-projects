@@ -27,6 +27,7 @@ async function update (userId, newUser) {
     user.name = newUser.name
     user.email = newUser.email
     user.imgUrl = newUser.imgUrl
+    user.favorites = newUser.favorites
 
     user.save((err) => {
       if (err) {

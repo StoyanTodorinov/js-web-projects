@@ -25,6 +25,12 @@ module.exports = (app) => {
   apiRouter.route('/categories')
     .get(controllers.categories.allCategories)
 
+  apiRouter.route('/comments')
+    .post(controllers.comments.createComment)
+  
+  apiRouter.route('/comments/:productId')
+    .get(controllers.comments.getCommentsByProductId)
+
   apiRouter.route('/products/new')
     .get(controllers.products.getNewProducts)
 

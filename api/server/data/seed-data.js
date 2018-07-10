@@ -50,7 +50,26 @@ const productsArr = [
   }
 ]
 
+let commentsArr = [
+  {
+    text: 'Looks amasing!',
+    productId: '5b443c16c583bb2c5c940bb1',
+    author: 'sto'
+  },
+  {
+    text: 'It also is on promotion not just amasing looks',
+    productId: '5b443c16c583bb2c5c940bb1',
+    author: 'Admin'
+  },
+  {
+    text: 'I am looking for a higher quality blade...',
+    productId: '5b443c16c583bb2c5c940bb1',
+    author: 'Admin'
+  }
+]
+
 module.exports = {
   categoriesArr,
-  productsArr
+  productsArr,
+  commentsArr
 }
