@@ -27,7 +27,7 @@ module.exports = (app) => {
 
   apiRouter.route('/comments')
     .post(controllers.comments.createComment)
-  
+
   apiRouter.route('/comments/:productId')
     .get(controllers.comments.getCommentsByProductId)
 
@@ -36,6 +36,9 @@ module.exports = (app) => {
 
   apiRouter.route('/products/promo')
     .get(controllers.products.getPromoProducts)
+
+  apiRouter.route('/products/array=:array')
+    .get(controllers.products.getAllProductsByArrayOfIds)
 
   apiRouter.route('/products/category=:categoryName')
     .get(controllers.products.getAllProductsByCategory)

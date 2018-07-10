@@ -3,7 +3,7 @@ const services = require('../services')
 module.exports = {
   createComment: async (req, res) => {
     let comment = req.body
-    await services.categories.createComment(comment)
+    await services.comments.createComment(comment)
     res.json({ message: 'Comment created' })
   },
   getCommentsByProductId: async (req, res) => {

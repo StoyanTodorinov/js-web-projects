@@ -14,5 +14,9 @@ module.exports = {
   },
   getNewProducts: async (req, res) => {
     res.json(await services.products.getNewProducts())
+  },
+  getAllProductsByArrayOfIds: async (req, res) => {
+    let array = req.params.array.split(',')
+    res.json(await services.products.getAllProductsByArrayOfIds(array))
   }
 }

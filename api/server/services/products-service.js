@@ -20,9 +20,15 @@ async function getNewProducts () {
   return products
 }
 
+async function getAllProductsByArrayOfIds (array) {
+  let products = await Product.find({ '_id': { $in: array } })
+  return products
+}
+
 module.exports = {
   getAllProductsByCategory,
   getProductById,
   getPromoProducts,
-  getNewProducts
+  getNewProducts,
+  getAllProductsByArrayOfIds
 }
