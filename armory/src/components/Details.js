@@ -17,6 +17,12 @@ class Details extends Component {
     }
   }
 
+  addComment = (comment) => {
+    comments.createComment(comment).then(() => {
+      this.setState({ comments: [...this.state.comments, comment] })
+    })
+  }
+
   addProductToFavorites = () => {
     let id = this.props.match.params.productId
     let user = this.state.user
@@ -86,12 +92,12 @@ class Details extends Component {
           </div>
           : 'Loading...'}
 
-        {/* TODO ADD COMMENTS COMPONENT AND RENDER ALL THERE, ADD ADD COMMENT BUTTON */}
         {this.state.user
           ? <Comments
             productId={this.state.product._id}
             comments={this.state.comments}
             author={this.state.user.username}
+            addComment={this.addComment}
             />
           : ''}
       </div>

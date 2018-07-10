@@ -4,7 +4,7 @@ import Product from './shared/Product'
 class Products extends Component {
   render () {
     let productItems
-    if (this.props.products && this.props.products.length > 0) {
+    if (this.props.products && this.props.products.length > 0 && typeof this.props.products !== 'string') {
       productItems =
         this.props.products.map((product, index) => {
           return <Product key={index} product={product} />

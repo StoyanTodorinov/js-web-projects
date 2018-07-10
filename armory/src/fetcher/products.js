@@ -43,3 +43,14 @@ export async function getNewProducts () {
     })
   return products
 }
+
+export async function getProductsByArray (array) {
+  let products = []
+  await fetch(urls.PRODUCT_ARRAY_URL + array)
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      products = response
+    })
+  return products
+}

@@ -17,18 +17,21 @@ class Comments extends Component {
     this.setState(this.state)
   }
 
-  // TODO ADD COMMENT TO THE DATABASE
   handleBtnOnClick = () => {
     if (this.state.isEditing) {
-      console.log(this.state.text)
-      console.log(this.props.productId)
+      let comment = {
+        text: this.state.text,
+        productId: this.props.productId,
+        author: JSON.parse(localStorage.getItem('user')).username
+      }
+      this.props.addComment(comment)
     }
-    this.setState({ isEditing: !this.state.isEditing })
+    this.setState({ isEditing: !this.state.isEditing, text: '' })
   }
 
   // TODO IMPLEMENT DATE FORMATTER
   formatTime = (date) => {
-    return 'it works'
+    return date
   }
 
   render() {
@@ -38,23 +41,25 @@ class Comments extends Component {
           key={index}
           name={comment.author}
           time={this.formatTime(comment.date)}
-          text={comment.text} 
+          text={comment.text}
           isCreator={this.props.author === comment.author}
-          />
+        />
       )
     })
+
+    let button = this.state.isEditing ? 'Post new comment' : 'Add new comment'
+    let input = this.state.isEditing ? <input className='App-form-input' type='text'
+      value={this.state.text} onChange={(e) => this.inputChange(e, 'text')} required /> : ''
+
     return (
       <div className='App-comments'>
         <div className='App-body-title'><p>Comments</p></div>
         <div className='App-details-comments'>
           {comments}
           <div className='App-add-comment-btn'>
-            {this.state.isEditing ? <input className='App-form-input' type='text'
-              value={this.state.text} onChange={(e) => this.inputChange(e, 'text')} required /> : ''}
+            {input}
             <button className='App-add-comment' onClick={this.handleBtnOnClick}>
-              {this.state.isEditing
-                ? 'Post new comment'
-                : 'Add new comment'}
+              {button}
             </button>
           </div>
         </div>
