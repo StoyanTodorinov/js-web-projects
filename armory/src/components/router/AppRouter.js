@@ -28,8 +28,8 @@ class AppRouter extends Component {
         <Route path='/login' render={props => <Login {...props} login={this.props.login} />} />
         <Route path='/myProfile' render={props => <MyProfile {...props} user={this.props.user} update={this.props.update} />} />
         <Route path='/register' render={props => <Register {...props} register={this.props.register} />} />
-        <Route path='/create' component={Create} />
         <Route path='/logout' render={props => <Logout {...props} logout={this.props.logout} />} />
+        <Route path='/create/:categoryName' component={Create} />
         <Route path='/details/:productId' render={props => <Details {...props} update={this.props.update} />} />
         <Route path='/categories/:categoryName' component={CategoryProducts} />
         <Route path='*' component={NotFound} />

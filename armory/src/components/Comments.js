@@ -8,7 +8,8 @@ class Comments extends Component {
 
     this.state = {
       isEditing: false,
-      text: ''
+      text: '',
+      comments: this.props.comments
     }
   }
 

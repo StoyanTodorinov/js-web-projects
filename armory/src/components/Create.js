@@ -1,32 +1,59 @@
 import React, { Component } from 'react'
 
 class Create extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      name: '',
+      price: '',
+      imgUrl: '',
+      description: '',
+      additionalInformation: ''
+    }
+  }
+
+  inputChange = (e, key) => {
+    let state = this.state
+    state[key] = e.target.value
+    this.setState(state)
+  }
+
+  // TODO ADD PRODUCTS TO DATABASE AND REDIRECT
+  onSubmit = e => {
+    e.preventDefault()
+    let product = {
+      name: this.state.name,
+      price: this.state.price,
+      img: this.state.imgUrl,
+      description: this.state.description,
+      additionalInformation: this.state.additionalInformation,
+      categoryName: this.props.match.params.categoryName,
+    }
+    console.log(product)
+  }
+
   render () {
     return (
       <div>
         <div className='App-body-title'><p>CREATE</p></div>
-        <form className='App-auth' method='POST'>
+        <form className='App-auth' onSubmit={this.onSubmit}>
           <p>
-            <label for='name'>
-              Name<input className='App-form-input' type='text' id='name' name='name' required />
-            </label>
+              Name<input className='App-form-input' value={this.state.name} onChange={e => this.inputChange(e, 'name')} required />
           </p>
           <p>
-            <label for='image'>
-              Image<input className='App-form-input' type='text' id='image' name='image' required />
-            </label>
+              Price<input className='App-form-input' value={this.state.price} onChange={e => this.inputChange(e, 'price')} required />
           </p>
           <p>
-            <label for='description'>
-              Description<textarea className='App-form-input' type='description' id='description' name='description' required />
-            </label>
+              Image<input className='App-form-input' value={this.state.imgUrl} onChange={e => this.inputChange(e, 'imgUrl')} required />
           </p>
           <p>
-            <label for='addition'>
-              Addition Information<textarea className='App-form-input' type='text' id='addition' name='addition' required />
-            </label>
+              Description<textarea className='App-form-input' value={this.state.description} onChange={e => this.inputChange(e, 'description')} required />
           </p>
-          <input className='App-form-submit' type='submit' id='password' name='password' />
+          <p>
+              Addition Information<textarea className='App-form-input' value={this.state.additionalInformation} onChange={e => this.inputChange(e, 'additionalInformation')} required />
+          </p>
+          <input className='App-form-submit' type='submit' />
         </form>
       </div>
     )

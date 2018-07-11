@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import * as products from '../fetcher/products'
 import * as comments from '../fetcher/comments'
@@ -17,21 +18,18 @@ class Details extends Component {
     }
   }
 
-  updateComment = (comment) => {
+  updateComment = comment => {
     comments.updateComment(comment).then()
   }
 
-  deleteComment = (commentId) => {
+  deleteComment = commentId => {
     // TODO FIX REMOVING COMMENTS MAKING A PROBLEM
     comments.deleteComment(commentId).then(() => {
-      this.setState({
-        comments: this.state.comments
-          .filter(comment => comment._id !== commentId)
-      })
+      this.fetchComments(this.state.product._id)
     })
   }
 
-  addComment = (comment) => {
+  addComment = comment => {
     comments.createComment(comment).then((newComment) => {
       this.setState({ comments: [...this.state.comments, newComment] })
     })
@@ -58,6 +56,12 @@ class Details extends Component {
     return result
   }
 
+  fetchComments (id) {
+    comments.getProductComments(id).then(comments => {
+      this.setState({ comments })
+    })
+  }
+
   componentDidMount() {
     let id = this.props.match.params.productId
     products.getProductById(id).then(product => {
@@ -65,9 +69,7 @@ class Details extends Component {
         product
       })
     })
-    comments.getProductComments(id).then(comments => {
-      this.setState({ comments })
-    })
+    this.fetchComments(id)
     if (this.state.user) {
       this.setState({
         isAdded: this.state.user.favorites
@@ -85,13 +87,15 @@ class Details extends Component {
       + ' (' + product.price + ')'
       : product.price
     let user = localStorage.getItem('user')
+    let addToFavorites = user ? <button className='App-add-to-favorites-btn' onClick={this.addProductToFavorites}>{this.state.isAdded ? 'Remove from favorites' : 'Add to favorites'}</button> : ''
+
     return (
       <div>
         {product !== {}
           ? <div>
             <div className='App-body-title'>
               <p>{product.name} details</p>
-              {user ? <button className='App-add-to-favorites-btn' onClick={this.addProductToFavorites}>{this.state.isAdded ? 'Remove from favorites' : 'Add to favorites'}</button> : ''}
+              {addToFavorites}
             </div>
             <div className='App-details'>
               <p>{'Name: ' + product.name}</p>

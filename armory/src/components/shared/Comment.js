@@ -11,7 +11,7 @@ class Comment extends Component {
       comment: this.props.comment
     }
   }
-  // TODO IMPLEMENT DATE FORMATTER
+  
   formatTime = (date) => {
     let dateFormat = new Date(date)
     let monthNames = [
