@@ -276,6 +276,7 @@
 }
 
 .App-add-comment {
+  margin: 10px;
   font-size: 20px;
   transition: all .2s ease-in-out;
 }
@@ -295,4 +296,32 @@
 
 .App-add-to-favorites-btn:hover {
   transform: scale(1.2);
+}
+
+.App-comment-edit-input {
+  padding: 2px 0 0 0;
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
+  font-size: 14px;
+  text-decoration: none;
+  outline: none;
+  display: block;
+  margin: 0 auto 0 auto;
+  /* text-align: center; */
+  width: 80%;
+  margin-bottom: 15px;
+  float: left;
+}
+
+.App-add-comment-input {
+  padding: 5px;
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
+  font-size: 18px;
+  text-decoration: none;
+  outline: none;
+  display: block;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  width: 50%;  
 }

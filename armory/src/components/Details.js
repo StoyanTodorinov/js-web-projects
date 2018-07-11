@@ -17,9 +17,23 @@ class Details extends Component {
     }
   }
 
+  updateComment = (comment) => {
+    comments.updateComment(comment).then()
+  }
+
+  deleteComment = (commentId) => {
+    // TODO FIX REMOVING COMMENTS MAKING A PROBLEM
+    comments.deleteComment(commentId).then(() => {
+      this.setState({
+        comments: this.state.comments
+          .filter(comment => comment._id !== commentId)
+      })
+    })
+  }
+
   addComment = (comment) => {
-    comments.createComment(comment).then(() => {
-      this.setState({ comments: [...this.state.comments, comment] })
+    comments.createComment(comment).then((newComment) => {
+      this.setState({ comments: [...this.state.comments, newComment] })
     })
   }
 
@@ -65,6 +79,7 @@ class Details extends Component {
   render() {
     let product = this.state.product
     // TODO RENDER ADDITIONAL INFORMATION
+    let additionalInformation = ''
     let price = product.promo > 0 ?
       (+product.price - +product.price * (product.promo / 100)).toFixed(2)
       + ' (' + product.price + ')'
@@ -82,9 +97,7 @@ class Details extends Component {
               <p>{'Name: ' + product.name}</p>
               <p>{'Price: ' + price}</p>
               <p>{'Description: ' + product.description}</p>
-              {this.state.additionalInformation !== {}
-                ? this.state.additionalInformation
-                : ''}
+              {additionalInformation}
             </div>
             <div className='App-details-img-container'>
               <img className='App-details-img' src={this.state.product.img} alt={this.state.product.name} />
@@ -98,7 +111,9 @@ class Details extends Component {
             comments={this.state.comments}
             author={this.state.user.username}
             addComment={this.addComment}
-            />
+            deleteComment={this.deleteComment}
+            updateComment={this.updateComment}
+          />
           : ''}
       </div>
     )

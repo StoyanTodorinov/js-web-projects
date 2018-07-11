@@ -29,26 +29,21 @@ class Comments extends Component {
     this.setState({ isEditing: !this.state.isEditing, text: '' })
   }
 
-  // TODO IMPLEMENT DATE FORMATTER
-  formatTime = (date) => {
-    return date
-  }
-
   render() {
     let comments = this.props.comments.map((comment, index) => {
       return (
         <Comment
           key={index}
-          name={comment.author}
-          time={this.formatTime(comment.date)}
-          text={comment.text}
+          comment={comment}
           isCreator={this.props.author === comment.author}
+          deleteComment={this.props.deleteComment}
+          updateComment={this.props.updateComment}
         />
       )
     })
 
     let button = this.state.isEditing ? 'Post new comment' : 'Add new comment'
-    let input = this.state.isEditing ? <input className='App-form-input' type='text'
+    let input = this.state.isEditing ? <input className='App-add-comment-input' type='text'
       value={this.state.text} onChange={(e) => this.inputChange(e, 'text')} required /> : ''
 
     return (
