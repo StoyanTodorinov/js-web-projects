@@ -27,9 +27,13 @@ module.exports = (app) => {
 
   apiRouter.route('/comments')
     .post(controllers.comments.createComment)
+    .put(controllers.comments.updateComment)
 
   apiRouter.route('/comments/:productId')
     .get(controllers.comments.getCommentsByProductId)
+
+  apiRouter.route('/comments/commentId=:commentId')
+    .delete(controllers.comments.deleteComment)
 
   apiRouter.route('/products/new')
     .get(controllers.products.getNewProducts)
