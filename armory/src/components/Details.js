@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import * as products from '../fetcher/products'
 import * as comments from '../fetcher/comments'

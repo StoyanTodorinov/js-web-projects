@@ -10,3 +10,18 @@ export async function allCategories () {
     })
   return categories
 }
+
+export async function create (category) {
+  await fetch(urls.CATEGORIES_URL, {
+    method: 'POST',
+    body: JSON.stringify(category),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      console.log(response)
+    })
+}

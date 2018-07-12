@@ -54,3 +54,18 @@ export async function getProductsByArray (array) {
     })
   return products
 }
+
+export async function create (product) {
+  await fetch(urls.CREATE_PRODUCT_URL, {
+    method: 'POST',
+    body: JSON.stringify(product),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      console.log(response)
+    })
+}

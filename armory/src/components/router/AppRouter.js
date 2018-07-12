@@ -12,7 +12,8 @@ import MyProfile from '../MyProfile'
 import Promoes from '../Promoes'
 import Favorites from '../Favorites'
 import NotFound from '../NotFound'
-import Create from '../Create'
+import CreateProduct from '../CreateProduct'
+import CreateCategory from '../CreateCategory'
 import Logout from '../Logout'
 import CategoryProducts from '../CategoryProducts'
 
@@ -29,7 +30,8 @@ class AppRouter extends Component {
         <Route path='/myProfile' render={props => <MyProfile {...props} user={this.props.user} update={this.props.update} />} />
         <Route path='/register' render={props => <Register {...props} register={this.props.register} />} />
         <Route path='/logout' render={props => <Logout {...props} logout={this.props.logout} />} />
-        <Route path='/create/:categoryName' component={Create} />
+        <Route path='/create/category' exact component={CreateCategory} />
+        <Route path='/create/:categoryName' component={CreateProduct} />
         <Route path='/details/:productId' render={props => <Details {...props} update={this.props.update} />} />
         <Route path='/categories/:categoryName' component={CategoryProducts} />
         <Route path='*' component={NotFound} />

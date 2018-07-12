@@ -15,8 +15,9 @@ class Register extends Component {
   }
 
   inputChange = (e, key) => {
-    this.state[key] = e.target.value
-    this.setState(this.state)
+    let state = this.state
+    state[key] = e.target.value
+    this.setState(state)
   }
 
   formSubmit = e => {
