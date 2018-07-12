@@ -1,5 +1,10 @@
 const Product = require('mongoose').model('Product')
 
+async function createProduct (product) {
+  let newProduct = await Product.create(product)
+  return newProduct
+}
+
 async function getAllProductsByCategory (category) {
   let products = await Product.find({ categoryName: category })
   return products
@@ -30,5 +35,6 @@ module.exports = {
   getProductById,
   getPromoProducts,
   getNewProducts,
-  getAllProductsByArrayOfIds
+  getAllProductsByArrayOfIds,
+  createProduct
 }

@@ -35,6 +35,12 @@ module.exports = (app) => {
   apiRouter.route('/comments/commentId=:commentId')
     .delete(controllers.comments.deleteComment)
 
+  apiRouter.route('/categories')
+    .post(controllers.categories.create)
+
+  apiRouter.route('/products')
+    .post(controllers.products.createProduct)
+
   apiRouter.route('/products/new')
     .get(controllers.products.getNewProducts)
 

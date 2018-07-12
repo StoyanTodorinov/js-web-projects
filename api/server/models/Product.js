@@ -4,7 +4,7 @@ const productsArr = require('../data/seed-data').productsArr
 
 let productSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  date: { type: Date, default: new Date() },
+  date: { type: Date, default: new Date(Date.now()) },
   categoryName: { type: String, required: true },
   price: { type: Number, required: true },
   img: { type: String, required: true },

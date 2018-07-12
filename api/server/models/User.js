@@ -26,10 +26,10 @@ module.exports.seedAdminUser = () => {
     if (users.length > 0) return
 
     let salt = encryption.generateSalt()
-    let hashedPass = encryption.generateHashedPassword(salt, '123456')
+    let hashedPass = encryption.generateHashedPassword(salt, 'admin')
 
     User.create({
-      username: 'Admin username',
+      username: 'admin',
       email: 'Admin email',
       name: 'Admin name',
       imgUrl: 'http://www.virtual-administration.com/wp-content/uploads/2016/02/Admin-resized-2.jpg',

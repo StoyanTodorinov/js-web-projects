@@ -18,5 +18,10 @@ module.exports = {
   getAllProductsByArrayOfIds: async (req, res) => {
     let array = req.params.array.split(',')
     res.json(await services.products.getAllProductsByArrayOfIds(array))
+  },
+  createProduct: async (req, res) => {
+    let product = req.body
+    await services.products.createProduct(product)
+    res.json({ message: 'Product created!' })
   }
 }
