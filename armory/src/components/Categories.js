@@ -20,7 +20,11 @@ export default class Categories extends Component {
   render () {
     const categoriesComponents = this.state.categories.map((item, index) => {
       return (
-        <CategoryItem name={item.name} key={index} to={item.name} />
+        <CategoryItem
+          name={item.name}
+          key={index}
+          to={item.name}
+        />
       )
     })
 

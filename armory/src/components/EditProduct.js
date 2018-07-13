@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as products from '../fetcher/products'
 
-class Create extends Component {
+class EditProduct extends Component {
   constructor(props) {
     super(props)
 
@@ -24,8 +24,11 @@ class Create extends Component {
 
   onSubmit = e => {
     e.preventDefault()
-    let additionalInformation =
-      this.state.additionalInformation.split(',').map(item => item.trim())
+    let additionalInformation = []
+    if (typeof this.state.additionalInformation === 'string' && this.state.additionalInformation.length > 0) {
+      additionalInformation =
+        this.state.additionalInformation.split(',').map(item => item.trim())
+    }
     let product = this.state.product
     product.additionalInformation = additionalInformation
     products.update(product).then(() => {
@@ -47,10 +50,10 @@ class Create extends Component {
         description: product.description
       })
     })
-    console.log(this.state.additionalInformation)
   }
 
   render() {
+    console.log(this.state.additionalInformation)
     return (
       <div>
         <div className='App-body-title'><p>CREATE</p></div>
@@ -80,4 +83,4 @@ class Create extends Component {
   }
 }
 
-export default Create
+export default EditProduct

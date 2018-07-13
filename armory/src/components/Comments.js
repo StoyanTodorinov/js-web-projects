@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Comment from './shared/Comment'
 
@@ -26,7 +27,9 @@ class Comments extends Component {
         productId: this.props.productId,
         author: JSON.parse(localStorage.getItem('user')).username
       }
-      this.props.addComment(comment)
+      if (comment.text !== '') {
+        this.props.addComment(comment)
+      }
     }
     this.setState({ isEditing: !this.state.isEditing, text: '' })
   }
@@ -50,7 +53,7 @@ class Comments extends Component {
 
     return (
       <div className='App-comments'>
-        <div className='App-body-title'><p>Comments</p></div>
+        <div className='App-body-title-comments'><p>Comments</p></div>
         <div className='App-details-comments'>
           {comments}
           <div className='App-add-comment-btn'>
@@ -63,6 +66,15 @@ class Comments extends Component {
       </div>
     )
   }
+}
+
+Comments.propTypes = {
+  productId: PropTypes.string,
+  comments: PropTypes.array.isRequired,
+  author: PropTypes.string.isRequired,
+  addComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  updateComment: PropTypes.func.isRequired
 }
 
 export default Comments

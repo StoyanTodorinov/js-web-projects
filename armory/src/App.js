@@ -10,7 +10,6 @@ import logo from './images/logo.png'
 import './App.css'
 
 // TODO VALIDATIONS!
-// EDIT PRODUCTS!
 class App extends Component {
   constructor(props) {
     super(props)

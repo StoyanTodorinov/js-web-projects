@@ -34,7 +34,9 @@ class CategoryProducts extends Component {
           </p>
           {addProduct}
         </div>
-        <Products products={this.state.products} />
+        <Products
+          products={this.state.products}
+        />
       </div>
     )
   }

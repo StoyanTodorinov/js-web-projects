@@ -75,7 +75,8 @@ class MyProfile extends Component {
 }
 
 MyProfile.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired
 }
 
 export default MyProfile

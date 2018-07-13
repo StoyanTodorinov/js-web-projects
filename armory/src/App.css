@@ -171,7 +171,7 @@
   padding: 10px 20px 10px 20px;
   border-radius: 10px;
   font-family: 'Shrikhand', cursive;
-  font-size: 20px;
+  font-size: 18px;
   text-decoration: none;
   outline: none;
   display: block;
@@ -341,4 +341,10 @@
 .App-create-link {
   text-decoration: none;
   color: black;
+}
+
+.App-body-title-comments {
+  text-align: center;
+  font-size: 26px;
+  margin-left: 4.5%;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Comment extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Comment extends Component {
       comment: this.props.comment
     }
   }
-  
+
   formatTime = (date) => {
     let dateFormat = new Date(date)
     let monthNames = [
@@ -20,11 +21,11 @@ class Comment extends Component {
       "August", "September", "October",
       "November", "December"
     ];
-  
+
     let day = dateFormat.getDate();
     let monthIndex = dateFormat.getMonth();
     let year = dateFormat.getFullYear();
-  
+
     return day + ' ' + monthNames[monthIndex] + ' ' + year;
   }
 
@@ -51,16 +52,16 @@ class Comment extends Component {
       ? <p><input className='App-comment-edit-input' type='text' value={this.state.text} onChange={(e) => this.inputChange(e, 'text')} required /></p>
       : <p className='App-comment-text'>{' - ' + this.state.comment.text}</p>
 
-      let authorBtns = isAdmin || this.props.isCreator
-        ? <div className='App-comment-btn-wrapper'>
-          <button className='App-comment-btn' onClick={this.editClick}>
-            {btnText}
-          </button>
-          <button className='App-comment-btn' onClick={() => this.props.deleteComment(this.props.comment._id)}>
-            Remove
+    let authorBtns = isAdmin || this.props.isCreator
+      ? <div className='App-comment-btn-wrapper'>
+        <button className='App-comment-btn' onClick={this.editClick}>
+          {btnText}
         </button>
-        </div>
-        : ''
+        <button className='App-comment-btn' onClick={() => this.props.deleteComment(this.props.comment._id)}>
+          Remove
+        </button>
+      </div>
+      : ''
 
     return (
       <div>
@@ -74,6 +75,13 @@ class Comment extends Component {
       </div>
     )
   }
+}
+
+Comment.propTypes = {
+  comment: PropTypes.object.isRequired,
+  isCreator: PropTypes.bool.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  updateComment: PropTypes.func.isRequired
 }
 
 export default Comment

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import * as products from '../fetcher/products'
@@ -82,7 +83,6 @@ class Details extends Component {
     let product = this.state.product
     let additionalInformation = ''
     if (product.additionalInformation && product.additionalInformation.length > 0) {
-      console.log(product.additionalInformation)
       additionalInformation = 'Additional information: ' + product.additionalInformation.join(', ')
     }
     let price = product.promo > 0 ?
@@ -127,6 +127,10 @@ class Details extends Component {
       </div>
     )
   }
+}
+
+Details.propTypes = {
+  update: PropTypes.func.isRequired
 }
 
 export default Details

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Products from './Products'
 
-import * as fetcher from '../fetcher/products'
+import * as products from '../fetcher/products'
 
 class Home extends Component {
   constructor (props) {
@@ -14,10 +14,10 @@ class Home extends Component {
   }
 
   componentDidMount () {
-    fetcher.getPromoProducts().then(promoProducts => {
+    products.getPromoProducts().then(promoProducts => {
       this.setState({ promoProducts })
     })
-    fetcher.getNewProducts().then(newProducts => {
+    products.getNewProducts().then(newProducts => {
       this.setState({ newProducts })
     })
   }
@@ -26,9 +26,13 @@ class Home extends Component {
     return (
       <div>
         <div className='App-body-title'><p>{'NEW'}</p></div>
-        <Products products={this.state.newProducts} />
+        <Products
+          products={this.state.newProducts}
+        />
         <div className='App-body-title'><p>{'PROMO'}</p></div>
-        <Products products={this.state.promoProducts.slice(0, 3)} />
+        <Products
+          products={this.state.promoProducts.slice(0, 3)}
+        />
       </div>
     )
   }

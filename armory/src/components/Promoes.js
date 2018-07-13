@@ -22,7 +22,9 @@ class Promoes extends Component {
     return (
       <div>
         <div className='App-body-title'><p>PROMOES</p></div>
-        <Products products={this.state.products} />
+        <Products
+          products={this.state.products}
+        />
       </div>
     )
   }

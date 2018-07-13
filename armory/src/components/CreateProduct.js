@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import * as products from '../fetcher/products'
 
-class Create extends Component {
+class CreateProduct extends Component {
   constructor(props) {
     super(props)
 
@@ -65,4 +65,4 @@ class Create extends Component {
   }
 }
 
-export default Create
+export default CreateProduct

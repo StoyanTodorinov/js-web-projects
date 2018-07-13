@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 class Product extends Component {
@@ -10,6 +11,10 @@ class Product extends Component {
       </Link>
     )
   }
+}
+
+Product.propTypes = {
+  product: PropTypes.object.isRequired
 }
 
 export default Product

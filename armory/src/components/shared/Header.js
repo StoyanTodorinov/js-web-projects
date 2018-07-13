@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class Header extends Component {
   render () {
     let user = localStorage.getItem('user')
-    let isAdmin = user !== null && JSON.parse(localStorage.getItem('user')).roles[0] === 'Admin'
+    let isAdmin = user !== null && JSON.parse(user).roles[0] === 'Admin'
 
     let adminLink = isAdmin
       ? <li className='App-nav-list-item'><Link className='App-nav-link' to='/create/category'>Add category</Link></li>

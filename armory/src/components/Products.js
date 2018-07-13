@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import Product from './shared/Product'
 
 class Products extends Component {
@@ -7,7 +9,10 @@ class Products extends Component {
     if (this.props.products && this.props.products.length > 0 && typeof this.props.products !== 'string') {
       productItems =
         this.props.products.map((product, index) => {
-          return <Product key={index} product={product} />
+          return <Product
+            key={index}
+            product={product}
+          />
         })
     } else {
       productItems = <div className='App-no-products'><i>No products added yet.</i></div>
@@ -15,10 +20,14 @@ class Products extends Component {
 
     return (
       <div>
-        { productItems }
+        {productItems}
       </div>
     )
   }
+}
+
+Products.propTypes = {
+  products: PropTypes.array.isRequired
 }
 
 export default Products
