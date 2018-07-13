@@ -5,7 +5,6 @@ import { Switch, Route } from 'react-router-dom'
 import Categories from '../Categories'
 import Login from '../Login'
 import Register from '../Register'
-import AdminView from '../AdminView'
 import Home from '../Home'
 import Details from '../Details'
 import MyProfile from '../MyProfile'
@@ -16,13 +15,13 @@ import CreateProduct from '../CreateProduct'
 import CreateCategory from '../CreateCategory'
 import Logout from '../Logout'
 import CategoryProducts from '../CategoryProducts'
+import EditProduct from '../EditProduct'
 
 class AppRouter extends Component {
   render () {
     return (
       <Switch>
         <Route path='/' exact component={Home} />
-        <Route path='/admin' component={AdminView} />
         <Route path='/categories' exact component={Categories} />
         <Route path='/favorites' exact component={Favorites} />
         <Route path='/promoes' component={Promoes} />
@@ -32,7 +31,8 @@ class AppRouter extends Component {
         <Route path='/logout' render={props => <Logout {...props} logout={this.props.logout} />} />
         <Route path='/create/category' exact component={CreateCategory} />
         <Route path='/create/:categoryName' component={CreateProduct} />
-        <Route path='/details/:productId' render={props => <Details {...props} update={this.props.update} />} />
+        <Route path='/edit/:productId' component={EditProduct} />
+        <Route path='/details/:productId' exact render={props => <Details {...props} update={this.props.update} />} />
         <Route path='/categories/:categoryName' component={CategoryProducts} />
         <Route path='*' component={NotFound} />
       </Switch>

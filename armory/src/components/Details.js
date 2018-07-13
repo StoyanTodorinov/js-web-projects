@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import * as products from '../fetcher/products'
 import * as comments from '../fetcher/comments'
@@ -55,7 +56,7 @@ class Details extends Component {
     return result
   }
 
-  fetchComments (id) {
+  fetchComments(id) {
     comments.getProductComments(id).then(comments => {
       this.setState({ comments })
     })
@@ -79,15 +80,19 @@ class Details extends Component {
 
   render() {
     let product = this.state.product
-    // TODO RENDER ADDITIONAL INFORMATION
     let additionalInformation = ''
+    if (product.additionalInformation && product.additionalInformation.length > 0) {
+      console.log(product.additionalInformation)
+      additionalInformation = 'Additional information: ' + product.additionalInformation.join(', ')
+    }
     let price = product.promo > 0 ?
       (+product.price - +product.price * (product.promo / 100)).toFixed(2)
       + ' (' + product.price + ')'
       : product.price
     let user = localStorage.getItem('user')
     let addToFavorites = user ? <button className='App-add-to-favorites-btn' onClick={this.addProductToFavorites}>{this.state.isAdded ? 'Remove from favorites' : 'Add to favorites'}</button> : ''
-
+    let isAdmin = user && JSON.parse(localStorage.getItem('user')).roles[0] === 'Admin'
+    let editProduct = isAdmin ? <button className='App-add-to-favorites-btn'><Link className='App-create-link' to={`/edit/${this.props.match.params.productId}`}>Edit product</Link></button> : ''
     return (
       <div>
         {product !== {}
@@ -95,6 +100,7 @@ class Details extends Component {
             <div className='App-body-title'>
               <p>{product.name} details</p>
               {addToFavorites}
+              {editProduct}
             </div>
             <div className='App-details'>
               <p>{'Name: ' + product.name}</p>

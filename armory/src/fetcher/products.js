@@ -69,3 +69,18 @@ export async function create (product) {
       console.log(response)
     })
 }
+
+export async function update (product) {
+  await fetch(urls.UPDATE_PRODUCT_URL, {
+    method: 'PUT',
+    body: JSON.stringify(product),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      console.log(response)
+    })
+}

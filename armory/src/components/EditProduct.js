@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import * as products from '../fetcher/products'
 
 class Create extends Component {
@@ -7,35 +6,48 @@ class Create extends Component {
     super(props)
 
     this.state = {
+      product: {},
       name: '',
       price: '',
-      imgUrl: '',
+      img: '',
+      promo: '',
       description: '',
       additionalInformation: ''
     }
   }
 
   inputChange = (e, key) => {
-    let state = this.state
-    state[key] = e.target.value
-    this.setState(state)
+    let product = this.state.product
+    product[key] = e.target.value
+    this.setState(product)
   }
 
   onSubmit = e => {
     e.preventDefault()
     let additionalInformation =
       this.state.additionalInformation.split(',').map(item => item.trim())
-    let product = {
-      name: this.state.name,
-      price: this.state.price,
-      img: this.state.imgUrl,
-      description: this.state.description,
-      additionalInformation: additionalInformation,
-      categoryName: this.props.match.params.categoryName,
-    }
-    products.create(product).then(() => {
+    let product = this.state.product
+    product.additionalInformation = additionalInformation
+    products.update(product).then(() => {
       this.props.history.goBack()
     })
+  }
+
+  componentDidMount() {
+    let id = this.props.match.params.productId
+    products.getProductById(id).then(product => {
+      let additionalInformation = product.additionalInformation.join(', ')
+      this.setState({
+        product,
+        additionalInformation,
+        name: product.name,
+        price: product.price,
+        promo: product.promo,
+        img: product.img,
+        description: product.description
+      })
+    })
+    console.log(this.state.additionalInformation)
   }
 
   render() {
@@ -50,7 +62,10 @@ class Create extends Component {
             Price<input className='App-form-input' type='number' value={this.state.price} onChange={e => this.inputChange(e, 'price')} required />
           </p>
           <p>
-            Image Url<input className='App-form-input' value={this.state.imgUrl} onChange={e => this.inputChange(e, 'imgUrl')} required />
+            Image Url<input className='App-form-input' value={this.state.img} onChange={e => this.inputChange(e, 'imgUrl')} required />
+          </p>
+          <p>
+            Promo<input className='App-form-input' type='number' value={this.state.promo} onChange={e => this.inputChange(e, 'promo')} required />
           </p>
           <p>
             Description<textarea className='App-form-input' value={this.state.description} onChange={e => this.inputChange(e, 'description')} required />
