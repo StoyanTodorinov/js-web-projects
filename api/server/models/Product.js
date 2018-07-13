@@ -10,7 +10,7 @@ let productSchema = new mongoose.Schema({
   img: { type: String, required: true },
   description: { type: String, required: true },
   promo: { type: Number, default: 0 },
-  additionalInformation: { type: Object, default: {} }
+  additionalInformation: { type: Array, default: [] }
 })
 
 let Product = mongoose.model('Product', productSchema)

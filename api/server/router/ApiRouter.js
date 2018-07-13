@@ -39,6 +39,7 @@ module.exports = (app) => {
     .post(controllers.categories.create)
 
   apiRouter.route('/products')
+    .put(controllers.products.updateProduct)
     .post(controllers.products.createProduct)
 
   apiRouter.route('/products/new')

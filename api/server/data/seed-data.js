@@ -18,9 +18,9 @@ const productsArr = [
     price: 200.99,
     img: 'https://images-na.ssl-images-amazon.com/images/I/81lw5x16GYL._SL1500_.jpg',
     description: 'A very light blade but very sharp and useful',
-    additionalInformation: {
-      weight: 1.500
-    }
+    additionalInformation: [
+      'weight', 1.500
+    ]
   },
   {
     name: 'Wakizashi',
@@ -29,10 +29,9 @@ const productsArr = [
     price: 159.99,
     img: 'https://cdn3.volusion.com/z93az.6qog9/v/vspfiles/photos/016-S101W-3.jpg?1528910443',
     description: "A very light and short blade, a samurai's second blade",
-    additionalInformation: {
-      weight: 500,
-      materials: 'Carbon and stainless steel'
-    }
+    additionalInformation: [
+      'weight' , 500, 'materials', 'Carbon and stainless steel'
+    ],
   },
   {
     name: 'Proelia TX010BB',
