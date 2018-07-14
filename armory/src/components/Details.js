@@ -24,7 +24,6 @@ class Details extends Component {
   }
 
   deleteComment = commentId => {
-    // TODO FIX REMOVING COMMENTS MAKING A PROBLEM
     comments.deleteComment(commentId).then(() => {
       this.fetchComments(this.state.product._id)
     })
@@ -105,9 +104,9 @@ class Details extends Component {
               {editProduct}
             </div>
             <div className='App-details'>
-              <p>{'Name: ' + product.name}</p>
-              <p>{'Price: ' + price}</p>
-              <p>{'Description: ' + product.description}</p>
+              <p>{product.name}</p>
+              <p>{price}</p>
+              <p>{product.description}</p>
               {additionalInformation}
             </div>
             <div className='App-details-img-container'>

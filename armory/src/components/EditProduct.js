@@ -70,10 +70,9 @@ class EditProduct extends Component {
   }
 
   render() {
-    console.log(this.state.additionalInformation)
     return (
       <div>
-        <div className='App-body-title'><p>CREATE</p></div>
+        <div className='App-body-title'><p>EDIT</p></div>
         <form className='App-auth' onSubmit={this.onSubmit}>
           <p>
             Name<input className='App-form-input' value={this.state.name} onChange={e => this.inputChange(e, 'name')} required />
@@ -82,7 +81,7 @@ class EditProduct extends Component {
             Price<input className='App-form-input' type='number' value={this.state.price} onChange={e => this.inputChange(e, 'price')} required />
           </p>
           <p>
-            Image Url<input className='App-form-input' type='url' value={this.state.img} onChange={e => this.inputChange(e, 'imgUrl')} required />
+            Image Url<input className='App-form-input' type='url' value={this.state.img} onChange={e => this.inputChange(e, 'img')} required />
           </p>
           <p>
             Promo<input className='App-form-input' type='number' value={this.state.promo} onChange={e => this.inputChange(e, 'promo')} required />
