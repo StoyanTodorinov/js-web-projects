@@ -13,6 +13,7 @@ Navigate to the project location, go to api folder, then open a terminal and wri
 Once you have all the dependencies start the program by typing `npm start`.
 Repeat the same process in the armory folder, a window in your browser should open on port 3000.
 In case that does not happen open manually the following address http://localhost:3000/
+*(Make sure you have started MongoDB)*
 
 **Functionality:**
  - Non-authenticated users can only browse the home/register/login views and the products visible on the home page
