@@ -5,8 +5,8 @@ async function allCategories () {
   return categories
 }
 
-async function create (category) {
-  await Category.create(category)
+function create (category) {
+  return Category.create(category)
 }
 
 module.exports = {

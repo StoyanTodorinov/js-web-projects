@@ -5,7 +5,7 @@ async function createComment (comment) {
 }
 
 async function getCommentsByProductId (productId) {
-  let comment = await Comment.find({ productId }).sort('-date')
+  let comment = await Comment.find({ productId }).sort('date')
   return comment
 }
 
@@ -19,7 +19,6 @@ async function updateComment (commentId, newComment) {
       console.log(err)
     }
     comment.text = newComment.text
-    comment.date = new Date()
 
     comment.save((err) => {
       if (err) {

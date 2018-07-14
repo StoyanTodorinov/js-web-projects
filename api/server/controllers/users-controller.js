@@ -26,11 +26,11 @@ module.exports = {
     let jsonUser
     services.users.login(reqUser).then(user => {
       if (!user) {
-        return res.json('Invalid user data')
+        return res.json('Invalid username')
       }
 
       if (!user.authenticate(reqUser.password)) {
-        return res.json('Invalid password!')
+        return res.json('Invalid password')
       }
       jsonUser = user
       req.logIn(user, (err, user) => {

@@ -6,7 +6,11 @@ module.exports = {
   },
   create: async (req, res) => {
     let category = req.body
-    await services.categories.create(category)
+    try {
+      await services.categories.create(category)
+    } catch (err) {
+     return res.json(err)
+    }
     res.json({ message: 'Category created!' })
   }
 }
