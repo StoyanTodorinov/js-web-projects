@@ -1,20 +1,20 @@
-Armory
+# Armory
 
-This is a simple catalog for everything related to the guns, knives, military, survival, camping etc.
+*This is a simple catalog for everything related to guns, knives, military, survival, camping etc.*
 
-Front-end:
+**Front-end:**
 React.js, html, css and google fonts
 
-Back-end:
+**Back-end:**
 Node.js(Express.js) and MongoDB(Mongoose)
 
-How to make it run:
+**How to make it run:**
 Navigate to the project location, go to api folder, then open a terminal and write down npm install
 Once you have all the dependencies start the program by typing npm start
 Repeat the same process in the armory folder, a window in your browser should open on port 3000
 In case that does not happen open manually the following address http://localhost:3000/
 
-User:
+**Functionality:**
  - Non-authenticated users can only browse the home/register/login views and the products visible on the home page
    (without seeing the comments)
  - Authenticated users can see all the application provides (additional navigation, products, categories and comments)
