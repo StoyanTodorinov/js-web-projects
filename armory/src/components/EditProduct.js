@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import * as products from '../fetcher/products'
 
 class EditProduct extends Component {
@@ -31,7 +33,11 @@ class EditProduct extends Component {
     }
     let product = this.state.product
     product.additionalInformation = additionalInformation
+    let toReturn = this.validateProduct(product)
+    if (toReturn)
+      return
     products.update(product).then(() => {
+      this.props.createNotification('info', 'Product updated')
       this.props.history.goBack()
     })
   }
@@ -52,6 +58,17 @@ class EditProduct extends Component {
     })
   }
 
+  validateProduct(product) {
+    if (product.name.length < 3) {
+      this.props.createNotification('error', 'Name must be at least 3 symbols long')
+      return true
+    }
+    if (product.description.length < 15) {
+      this.props.createNotification('error', 'Description must be at least 15 symbols long')
+      return true
+    }
+  }
+
   render() {
     console.log(this.state.additionalInformation)
     return (
@@ -65,7 +82,7 @@ class EditProduct extends Component {
             Price<input className='App-form-input' type='number' value={this.state.price} onChange={e => this.inputChange(e, 'price')} required />
           </p>
           <p>
-            Image Url<input className='App-form-input' value={this.state.img} onChange={e => this.inputChange(e, 'imgUrl')} required />
+            Image Url<input className='App-form-input' type='url' value={this.state.img} onChange={e => this.inputChange(e, 'imgUrl')} required />
           </p>
           <p>
             Promo<input className='App-form-input' type='number' value={this.state.promo} onChange={e => this.inputChange(e, 'promo')} required />
@@ -81,6 +98,10 @@ class EditProduct extends Component {
       </div>
     )
   }
+}
+
+EditProduct.propTypes = {
+  createNotification: PropTypes.func.isRequired
 }
 
 export default EditProduct

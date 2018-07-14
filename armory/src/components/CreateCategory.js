@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import * as categories from '../fetcher/categories'
 
-class Create extends Component {
+class CreateCategory extends Component {
   constructor (props) {
     super(props)
 
@@ -15,7 +17,17 @@ class Create extends Component {
     let category = {
       name: this.state.name
     }
-    categories.create(category).then(() => {
+    if (category.name.length < 3) {
+      this.props.createNotification('Error', 'Category name must be at least 3 symbols long')
+      return
+    }
+    console.log(category)
+    categories.create(category).then(res => {
+      if (res.code) {
+        this.props.createNotification('Error', 'Category already exists')
+        return
+      }
+      this.props.createNotification('success', 'Category created')
       this.props.history.push('/categories')
     })
   }
@@ -41,4 +53,8 @@ class Create extends Component {
   }
 }
 
-export default Create
+CreateCategory.propTypes = {
+  createNotification: PropTypes.func.isRequired
+}
+
+export default CreateCategory

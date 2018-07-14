@@ -30,8 +30,38 @@ class Register extends Component {
       password2: this.state.password2,
       imgUrl: this.state.imgUrl
     }
-    this.props.register(user)
-    this.props.history.push('/')
+    let toReturn = this.validateUserData(user)
+    if (toReturn)
+      return
+    this.props.register(user).then(res => {
+      if (res.code) {
+        this.props.createNotification('Error', 'Username already exists')
+        return
+      }
+      this.props.createNotification('success', 'Registered')
+      this.props.updateAppState()
+      this.props.history.push('/')
+    })
+  }
+
+  validateUserData(user) {
+    if (user.name.length < 4) {
+      this.props.createNotification('error', 'Name should be at least 4 symbols long')
+      return true
+    }
+    if (user.username.length < 4) {
+      this.props.createNotification('error', 'Username should be at least 4 symbols long')
+      return true
+    }
+    if (user.password.length < 6) {
+      this.props.createNotification('error', 'Password should be at least 6 symbols long')
+      return true
+    }
+    if (user.password2.length !== user.password.length) {
+      this.props.createNotification('error', "Passwords don't match")
+      return true
+    }
+    return false
   }
 
   render() {
@@ -77,7 +107,9 @@ class Register extends Component {
 }
 
 Register.propType = {
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  createNotification: PropTypes.func.isRequired,
+  updateAppState: PropTypes.func.isRequired
 }
 
 export default Register

@@ -18,21 +18,21 @@ import CategoryProducts from '../CategoryProducts'
 import EditProduct from '../EditProduct'
 
 class AppRouter extends Component {
-  render () {
+  render() {
     return (
       <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/categories' exact component={Categories} />
         <Route path='/favorites' exact component={Favorites} />
         <Route path='/promoes' component={Promoes} />
-        <Route path='/login' render={props => <Login {...props} login={this.props.login} />} />
-        <Route path='/myProfile' render={props => <MyProfile {...props} user={this.props.user} update={this.props.update} />} />
-        <Route path='/register' render={props => <Register {...props} register={this.props.register} />} />
-        <Route path='/logout' render={props => <Logout {...props} logout={this.props.logout} />} />
-        <Route path='/create/category' exact component={CreateCategory} />
-        <Route path='/create/:categoryName' component={CreateProduct} />
-        <Route path='/edit/:productId' component={EditProduct} />
-        <Route path='/details/:productId' exact render={props => <Details {...props} update={this.props.update} />} />
+        <Route path='/login' render={props => <Login {...props} login={this.props.login} createNotification={this.props.createNotification} updateAppState={this.props.updateAppState} />} />
+        <Route path='/myProfile' render={props => <MyProfile {...props} user={this.props.user} update={this.props.update}  createNotification={this.props.createNotification} />} />
+        <Route path='/register' render={props => <Register {...props} register={this.props.register} createNotification={this.props.createNotification} updateAppState={this.props.updateAppState} />} />
+        <Route path='/logout' render={props => <Logout {...props} logout={this.props.logout} createNotification={this.props.createNotification} />} />
+        <Route path='/create/category' exact render={props => <CreateCategory {...props} createNotification={this.props.createNotification} />} />
+        <Route path='/create/:categoryName' render={props => <CreateProduct {...props} createNotification={this.props.createNotification} />} />
+        <Route path='/edit/:productId' render={props => <EditProduct {...props} createNotification={this.props.createNotification} />} />
+        <Route path='/details/:productId' exact render={props => <Details {...props} update={this.props.update} createNotification={this.props.createNotification} />} />
         <Route path='/categories/:categoryName' component={CategoryProducts} />
         <Route path='*' component={NotFound} />
       </Switch>
@@ -42,11 +42,13 @@ class AppRouter extends Component {
 
 AppRouter.propTypes = {
   user: PropTypes.object,
+  createNotification: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   update: PropTypes.func.isRequired,
-  isLogged: PropTypes.bool.isRequired
+  isLogged: PropTypes.bool.isRequired,
+  updateAppState: PropTypes.func.isRequired
 }
 
 export default AppRouter

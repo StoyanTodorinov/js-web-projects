@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
+import { NotificationManager, NotificationContainer } from 'react-notifications'
+import 'react-notifications/lib/notifications.css'
 
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 import HeaderAddition from './components/shared/HeaderAddition'
 import AppRouter from './components/router/AppRouter'
-import * as fetcher from './fetcher/users'
+import * as users from './fetcher/users'
 
 import logo from './images/logo.png'
 import './App.css'
 
-// TODO VALIDATIONS!
 class App extends Component {
   constructor(props) {
     super(props)
@@ -20,25 +21,42 @@ class App extends Component {
     }
   }
 
+  createNotification = (type, message) => {
+    switch (type) {
+      case 'info':
+        NotificationManager.info(message, '', 3000);
+        break;
+      case 'success':
+        NotificationManager.success(message, '', 3000);
+        break;
+      case 'warning':
+        NotificationManager.warning(message, '', 3000);
+        break;
+      default:
+        NotificationManager.error(message, '', 3000);
+        break;
+    }
+  }
+
+  updateAppState = () => {
+    this.checkLogged()
+  }
+
   login = user => {
-    fetcher.login(user).then(() => {
-      this.checkLogged()
-    })
+    return users.login(user)
   }
 
   register = user => {
-    fetcher.register(user).then(() => {
-      this.checkLogged()
-    })
+    return users.register(user)
   }
 
   logout = () => {
-    fetcher.logout()
+    users.logout()
     this.checkLogged()
   }
 
   update = user => {
-    fetcher.update(user)
+    users.update(user)
   }
 
   checkLogged = () => {
@@ -50,7 +68,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.checkLogged() 
+    this.checkLogged()
   }
 
   render() {
@@ -61,16 +79,19 @@ class App extends Component {
           logout={this.logout}
           isLogged={this.state.isLogged}
         />
+        <NotificationContainer />
         {this.state.isLogged ? <HeaderAddition /> : null}
         <div className='App-intro'>
           <div className='App-content'>
             <AppRouter
+              createNotification={this.createNotification}
               user={JSON.parse(this.state.user)}
               login={this.login}
               register={this.register}
               logout={this.logout}
               update={this.update}
               isLogged={this.state.isLogged}
+              updateAppState={this.updateAppState}
             />
           </div>
         </div>

@@ -40,8 +40,10 @@ class Details extends Component {
     let id = this.props.match.params.productId
     let user = this.state.user
     if (!this.state.isAdded) {
+      this.props.createNotification('info', 'Added to favorites')
       user.favorites = [...user.favorites, id]
     } else {
+      this.props.createNotification('info', 'Removed from favorites')
       user.favorites = user.favorites.filter(x => x !== id)
     }
     localStorage.setItem('user', JSON.stringify(user))
@@ -122,6 +124,7 @@ class Details extends Component {
             addComment={this.addComment}
             deleteComment={this.deleteComment}
             updateComment={this.updateComment}
+            createNotification={this.props.createNotification}
           />
           : ''}
       </div>
@@ -130,7 +133,8 @@ class Details extends Component {
 }
 
 Details.propTypes = {
-  update: PropTypes.func.isRequired
+  update: PropTypes.func.isRequired,
+  createNotification: PropTypes.func.isRequired
 }
 
 export default Details

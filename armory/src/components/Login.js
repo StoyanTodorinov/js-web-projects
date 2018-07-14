@@ -24,11 +24,18 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     }
-    this.props.login(user)
-    this.props.history.push('/')
+    this.props.login(user).then( res => {
+      if (typeof res === 'object') {
+        this.props.createNotification('success', 'Logged in')
+        this.props.updateAppState()
+        this.props.history.push('/')
+      } else {
+        this.props.createNotification('error', res)
+      }
+    }) 
   }
 
-  render () {
+  render() {
     return (
       <div>
         <div className='App-body-title'><p>LOGIN</p></div>
@@ -37,13 +44,13 @@ class Login extends Component {
           <p>
             <label>
               Username<input className='App-form-input' type='text' id='username' name='username'
-               value={this.state.username} onChange={(e) => this.inputChange(e, 'username')} required />
+                value={this.state.username} onChange={(e) => this.inputChange(e, 'username')} required />
             </label>
           </p>
           <p>
             <label>
               Password<input className='App-form-input' type='password' id='password' name='password'
-               value={this.state.password} onChange={(e) => this.inputChange(e, 'password')} required />
+                value={this.state.password} onChange={(e) => this.inputChange(e, 'password')} required />
             </label>
           </p>
           <input className='App-form-submit' type='submit' id='submit' name='password' />
@@ -54,7 +61,9 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  login: PropTypes.func.isRequired
+  createNotification: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  updateAppState: PropTypes.func.isRequired
 }
 
 export default Login

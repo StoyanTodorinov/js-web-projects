@@ -28,7 +28,10 @@ class Comments extends Component {
         author: JSON.parse(localStorage.getItem('user')).username
       }
       if (comment.text !== '') {
+        this.props.createNotification('success', 'Comment created')
         this.props.addComment(comment)
+      } else {
+        this.props.createNotification('warning', 'You cannot post an empty comment')
       }
     }
     this.setState({ isEditing: !this.state.isEditing, text: '' })
@@ -38,11 +41,12 @@ class Comments extends Component {
     let comments = this.props.comments.map((comment, index) => {
       return (
         <Comment
-          key={index}
+          key={comment._id}
           comment={comment}
           isCreator={this.props.author === comment.author}
           deleteComment={this.props.deleteComment}
           updateComment={this.props.updateComment}
+          createNotification={this.props.createNotification}
         />
       )
     })
@@ -74,7 +78,8 @@ Comments.propTypes = {
   author: PropTypes.string.isRequired,
   addComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
-  updateComment: PropTypes.func.isRequired
+  updateComment: PropTypes.func.isRequired,
+  createNotification: PropTypes.func.isRequired
 }
 
 export default Comments

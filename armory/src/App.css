@@ -216,6 +216,7 @@
 .App-details-img {
   width: 100%;
   height: auto;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
 }
 
 .App-details-comments {
@@ -245,6 +246,13 @@
 
 .App-comment-btn {
   vertical-align: top;
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
+  text-decoration: none;
+  outline: none;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  border: 1px solid black;
   font-size: 15px;
   transition: all .2s ease-in-out;
 }
@@ -254,7 +262,14 @@
 }
 
 .App-profile-btn {
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
   font-size: 20px;
+  text-decoration: none;
+  outline: none;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  border: 2px solid black;
   transition: all .2s ease-in-out;
 }
 
@@ -278,8 +293,14 @@
 }
 
 .App-add-comment {
-  margin: 10px;
   font-size: 20px;
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
+  text-decoration: none;
+  outline: none;
+  margin: 15px auto 20px auto;
+  text-align: center;
+  border: 2px solid black;
   transition: all .2s ease-in-out;
 }
 
@@ -292,7 +313,14 @@
 }
 
 .App-add-to-favorites-btn {
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
   font-size: 15px;
+  text-decoration: none;
+  outline: none;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  border: 1px solid black;
   transition: all .2s ease-in-out;
 }
 
@@ -309,7 +337,6 @@
   outline: none;
   display: block;
   margin: 0 auto 0 auto;
-  /* text-align: center; */
   width: 80%;
   margin-bottom: 15px;
   float: left;
@@ -329,7 +356,14 @@
 }
 
 .App-to-product-create {
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
   font-size: 20px;
+  text-decoration: none;
+  outline: none;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  border: 2px solid black;
   transition: all .2s ease-in-out;
   margin-bottom: 10px;
 }
@@ -347,4 +381,16 @@
   text-align: center;
   font-size: 26px;
   margin-left: 4.5%;
+}
+
+.App-profile-form-input {
+  padding: 0 10px 0 10px;
+  border-radius: 10px;
+  font-family: 'Shrikhand', cursive;
+  font-size: 18px;
+  text-decoration: none;
+  outline: none;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  width: 60%;  
 }

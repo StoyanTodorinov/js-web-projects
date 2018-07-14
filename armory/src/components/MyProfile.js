@@ -19,7 +19,11 @@ class MyProfile extends Component {
       user.imgUrl = this.state.imgUrl
       user.name = this.state.name
       user.email = this.state.email
+      let toReturn = this.validateUserData(user)
+      if (toReturn)
+        return
       localStorage.setItem('user', JSON.stringify(user))
+      this.props.createNotification('info', 'Profile updated')
       this.props.update(user)
     }
     this.setState({ isEditing: !this.state.isEditing })
@@ -29,6 +33,13 @@ class MyProfile extends Component {
     let state = this.state
     state[key] = e.target.value
     this.setState(state)
+  }
+
+  validateUserData(user) {
+    if (user.name.length < 4) {
+      this.props.createNotification('error', 'Name must be at least 3 symbols long')
+      return true
+    }
   }
 
   render() {
@@ -41,17 +52,17 @@ class MyProfile extends Component {
             <div>
               <p>
                 <label>
-                  Name: <input className='App-form-input' type='text' value={this.state.name} onChange={(e) => this.inputChange(e, 'name')} required />
+                  Name: <input className='App-profile-form-input' type='text' value={this.state.name} onChange={(e) => this.inputChange(e, 'name')} required />
                 </label>
               </p>
               <p>
                 <label>
-                  Email: <input className='App-form-input' type='text' value={this.state.email} onChange={(e) => this.inputChange(e, 'email')} required />
+                  Email: <input className='App-profile-form-input' type='text' value={this.state.email} onChange={(e) => this.inputChange(e, 'email')} required />
                 </label>
               </p>
               <p>
                 <label>
-                  Image url: <input className='App-form-input' type='text' value={this.state.imgUrl} onChange={(e) => this.inputChange(e, 'imgUrl')} required />
+                  Image url: <input className='App-profile-form-input' type='url' value={this.state.imgUrl} onChange={(e) => this.inputChange(e, 'imgUrl')} required />
                 </label>
               </p>
             </div>
@@ -76,7 +87,8 @@ class MyProfile extends Component {
 
 MyProfile.propTypes = {
   user: PropTypes.object.isRequired,
-  update: PropTypes.func.isRequired
+  update: PropTypes.func.isRequired,
+  createNotification: PropTypes.func.isRequired
 }
 
 export default MyProfile

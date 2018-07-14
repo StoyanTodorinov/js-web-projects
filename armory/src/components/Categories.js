@@ -21,8 +21,8 @@ export default class Categories extends Component {
     const categoriesComponents = this.state.categories.map((item, index) => {
       return (
         <CategoryItem
-          name={item.name}
           key={index}
+          name={item.name}
           to={item.name}
         />
       )

@@ -65,9 +65,7 @@ export async function create (product) {
   })
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => {
-      console.log(response)
-    })
+    .then()
 }
 
 export async function update (product) {
@@ -80,7 +78,5 @@ export async function update (product) {
   })
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => {
-      console.log(response)
-    })
+    .then()
 }

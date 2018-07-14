@@ -12,6 +12,7 @@ export async function allCategories () {
 }
 
 export async function create (category) {
+  let res;
   await fetch(urls.CATEGORIES_URL, {
     method: 'POST',
     body: JSON.stringify(category),
@@ -22,6 +23,8 @@ export async function create (category) {
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
     .then(response => {
+      res = response
       console.log(response)
     })
+    return res
 }

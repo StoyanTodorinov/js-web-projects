@@ -33,10 +33,15 @@ class Comment extends Component {
     if (this.state.isEditing) {
       let comment = this.state.comment
       comment.text = this.state.text
-      console.log(comment)
+      this.props.createNotification('info', 'Comment updated')
       this.props.updateComment(comment)
     }
     this.setState({ isEditing: !this.state.isEditing })
+  }
+
+  deleteClick = id => {
+    this.props.createNotification('info', 'Comment deleted')
+    this.props.deleteComment(id)
   }
 
   inputChange = (e, key) => {
@@ -57,7 +62,7 @@ class Comment extends Component {
         <button className='App-comment-btn' onClick={this.editClick}>
           {btnText}
         </button>
-        <button className='App-comment-btn' onClick={() => this.props.deleteComment(this.props.comment._id)}>
+        <button className='App-comment-btn' onClick={() => this.deleteClick(this.props.comment._id)}>
           Remove
         </button>
       </div>
@@ -81,7 +86,8 @@ Comment.propTypes = {
   comment: PropTypes.object.isRequired,
   isCreator: PropTypes.bool.isRequired,
   deleteComment: PropTypes.func.isRequired,
-  updateComment: PropTypes.func.isRequired
+  updateComment: PropTypes.func.isRequired,
+  createNotification: PropTypes.func.isRequired
 }
 
 export default Comment

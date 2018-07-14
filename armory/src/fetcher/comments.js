@@ -38,9 +38,7 @@ export async function updateComment (comment) {
   })
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => {
-      console.log(response)
-    })
+    .then()
 }
 
 export async function deleteComment (commentId) {
@@ -49,7 +47,5 @@ export async function deleteComment (commentId) {
   })
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => {
-      console.log(response)
-    })
+    .then()
 }
