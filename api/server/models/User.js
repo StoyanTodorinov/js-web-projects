@@ -30,8 +30,8 @@ module.exports.seedAdminUser = () => {
 
     User.create({
       username: 'admin',
-      email: 'Admin email',
-      name: 'Admin name',
+      email: 'admin@admin.com',
+      name: 'admin',
       imgUrl: 'http://www.virtual-administration.com/wp-content/uploads/2016/02/Admin-resized-2.jpg',
       salt: salt,
       hashedPass: hashedPass,

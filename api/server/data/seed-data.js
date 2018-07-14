@@ -2,11 +2,8 @@ const categoriesArr = [
   { name: 'Knives' },
   { name: 'Firearms' },
   { name: 'Hatchets' },
-  { name: 'Axes' },
-  { name: 'Armors' },
   { name: 'Equipment' },
   { name: 'Survival' },
-  { name: 'Sharpening stones' },
   { name: 'Food' }
 ]
 
@@ -46,24 +43,54 @@ const productsArr = [
     price: 1095.66,
     img: 'https://i.ytimg.com/vi/xOD9UXBrNXA/maxresdefault.jpg',
     description: 'The MRI Desert Eagle is a semi-automatic handgun notable for chambering the largest centerfire cartridge of any magazine-fed, self-loading pistol'
+  },
+  {
+    name: 'AK 47',
+    categoryName: 'Firearms',
+    price: 2095.00,
+    img: 'https://i.ytimg.com/vi/xOD9UXBrNXA/maxresdefault.jpg',
+    promo: 25,
+    description: 'Kalashnikov rifle, a series of automatic rifles based on the original design of Mikhail Kalashnikov'
+  },
+  {
+    name: 'M4 carbine',
+    categoryName: 'Firearms',
+    price: 2500,
+    img: 'https://www.evike.com/images/large/sharp-70025.jpg',
+    description: 'The M4 carbine is a shorter and lighter variant of the M16A2 assault rifle'
   }
 ]
 
 let commentsArr = [
   {
     text: 'Looks amasing!',
-    productId: '5b443c16c583bb2c5c940bb1',
-    author: 'sto'
+    productId: '5b49ee1a6ac39b274d120ed2',
+    author: 'admin'
   },
   {
     text: 'It also is on promotion not just amasing looks',
-    productId: '5b443c16c583bb2c5c940bb1',
-    author: 'Admin'
+    productId: '5b49ee1a6ac39b274d120ed2',
+    author: 'admin'
   },
   {
-    text: 'I am looking for a higher quality blade...',
-    productId: '5b443c16c583bb2c5c940bb1',
-    author: 'Admin'
+    text: 'Classic',
+    productId: '5b49ee1a6ac39b274d120ed5',
+    author: 'admin'
+  },
+  {
+    text: 'Reminds me of CS 1,6',
+    productId: '5b49ee1a6ac39b274d120ed5',
+    author: 'admin'
+  },
+  {
+    text: 'Cool pistol',
+    productId: '5b49ee1a6ac39b274d120ed4',
+    author: 'admin'
+  },
+  {
+    text: 'One of the best pocket knives on the market',
+    productId: '5b49ee1a6ac39b274d120ed3',
+    author: 'admin'
   }
 ]
 
