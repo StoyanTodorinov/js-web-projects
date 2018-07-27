@@ -1,7 +1,7 @@
 import { Article } from '../models/article.model'
 import { data } from './seed'
 
-export class ArticleDate {
+export class ArticleData {
   getData(): Article[] {
     let articles: Article[] = [];
     

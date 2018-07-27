@@ -6,6 +6,7 @@ import { Article } from '../models/article.model'
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.css']
 })
+
 export class ArticleComponent implements OnInit {
 
   private symbols: number = 250;
@@ -18,12 +19,34 @@ export class ArticleComponent implements OnInit {
   imageIsShown: boolean = false;
   imageButtonTitle: string = 'Show image';
 
-  constructor() { 
+  constructor() {
     this.articleDescLen = 0;
     this.descToShow = '';
   }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  readMore() {
+    this.articleDescLen += this.symbols;
+    if (this.articleDescLen >= this.articleDesc.length) {
+      this.showHideBtn = true;
+      this.showReadMoreBtn = false;
+    } else {
+      this.descToShow = this.articleDesc.substring(0, this.articleDescLen);
+    }
   }
 
+  toggleImage() {
+    this.imageIsShown = !this.imageIsShown;
+    this.imageButtonTitle === 'Show image'
+      ? this.imageButtonTitle = 'Hide image'
+      : this.imageButtonTitle = 'Show image';
+  }
+
+  hideDesc() {
+    this.descToShow = '';
+    this.articleDescLen = 0;
+    this.showReadMoreBtn = true;
+    this.showHideBtn = false;
+  }
 }
