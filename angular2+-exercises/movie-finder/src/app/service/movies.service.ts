@@ -14,11 +14,25 @@ export class MoviesService {
 
   path: string = 'https://api.themoviedb.org/3/';
   popular: string = 'discover/movie?sort_by=popularity.desc';
-  theaters: string = 'discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22'
+  theaters: string = 'discover/movie?primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22';
+  kids: string = 'discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc';
+  dramas: string = 'discover/movie?with_genres=18&primary_release_year=2018';
+  movie: string = 'movie/';
+  movies: string = 'search/movie';
+  query: string = '&query=';
   authentication: string = '&api_key=' + apiKeyV3;
+  authenticationMovie: string = '?api_key=' + apiKeyV3;
 
   constructor(httpClient: HttpClient) {
     this.httpClient = httpClient;
+  }
+
+  getMoviesByName(name) {
+    return this.httpClient.get(this.path + this.movies + this.authenticationMovie + this.query + name);    
+  } 
+
+  getMovie(id) {
+    return this.httpClient.get(this.path + this.movie + id + this.authenticationMovie);
   }
 
   getPopular() {
@@ -27,5 +41,13 @@ export class MoviesService {
 
   getTheaters() {
     return this.httpClient.get(this.path + this.theaters + this.authentication);
+  }
+
+  getKids() {
+    return this.httpClient.get(this.path + this.kids + this.authentication);    
+  }
+
+  getDramas() {
+    return this.httpClient.get(this.path + this.dramas + this.authentication);    
   }
 }
