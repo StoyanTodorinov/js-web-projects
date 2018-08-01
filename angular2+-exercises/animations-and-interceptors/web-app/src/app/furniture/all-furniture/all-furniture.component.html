@@ -1,3 +1,26 @@
-<p>
-  all-furniture works!
-</p>
+<div class="container">
+  <div class="row space-top">
+    <div class="col-md-12">
+      <h1>Welcome to Furniture System</h1>
+      <p>Select furniture from the catalog to view details.</p>
+    </div>
+  </div>
+  <div class="row space-top">
+    <div class="col-md-4" *ngFor="let product of products">
+      <div class="card text-white bg-primary">
+        <div class="card-body">
+          <blockquote class="card-blockquote">
+            <img src="{{product.image}}" />
+            <p>{{product.make}} {{product.model}}</p>
+            <footer>Creator {{product.createdBy}}
+              <cite title="Source Title">Price {{product.price}}</cite>
+            </footer>
+            <div class="pull-right">
+              <a routerLink="/furniture/details/{{product.id}}" class="btn btn-info">Details</a>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

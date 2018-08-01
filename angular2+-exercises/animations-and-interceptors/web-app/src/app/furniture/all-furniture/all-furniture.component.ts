@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemModel } from '../models/list.model';
+import { FurnitureService } from '../furniture.service';
 
 @Component({
   selector: 'app-all-furniture',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-furniture.component.css']
 })
 export class AllFurnitureComponent implements OnInit {
+  products: any;
 
-  constructor() { }
+  constructor(
+    private furnitureService: FurnitureService
+  ) { }
 
   ngOnInit() {
+    this.furnitureService.all().subscribe(data => {
+      this.products = data;
+      console.log(data);
+    });
   }
-
 }

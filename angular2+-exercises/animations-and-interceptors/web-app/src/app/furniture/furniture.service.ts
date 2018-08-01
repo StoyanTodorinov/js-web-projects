@@ -15,7 +15,7 @@ export class FurnitureService {
     private http: HttpClient
   ) { }
 
-  create(model: FurnitureModel)  {
+  create(model)  {
     return this.http.post(createUrl, model);
   }
 

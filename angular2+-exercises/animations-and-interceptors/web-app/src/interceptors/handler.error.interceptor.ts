@@ -35,6 +35,10 @@ export class ErrorHandleInterceptor implements HttpInterceptor {
             this.router.navigateByUrl('/home');
             this.toastr.success('Logged in!');
           }
+          if (request.url.endsWith('create')) {
+            this.router.navigateByUrl('/furniture/all');            
+            this.toastr.success('Created!');
+          }
         }
       }, (err: any) => {
         //TODO HANDLE ALL ERRORS IF POSSIBLE

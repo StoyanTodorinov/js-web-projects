@@ -17,11 +17,9 @@ export class CreateFurnitureComponent implements OnInit {
 
   ngOnInit() { }
 
-  create() {
-    //TODO FIX TWO-WAY BINDING!
-    console.log(this.model);
-    // this.furnitureService
-    // .create(this.model)
-    // .subscribe();
+  create(form) {
+    this.furnitureService
+      .create(form.value)
+      .subscribe();
   }
 }
