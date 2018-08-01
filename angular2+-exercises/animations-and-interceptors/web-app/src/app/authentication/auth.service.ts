@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SignUpModel } from './models/signup.model';
 import { SignInModel } from './models/signin.model';
+import { Router } from '@angular/router';
 
 const loginUrl = 'http://localhost:5000/auth/login';
 const registerUrl = 'http://localhost:5000/auth/signup';
 
 @Injectable()
 export class AuthService {
-  constructor(private http : HttpClient) {  }
+  constructor(private http : HttpClient, private router: Router) {  }
 
   register(body : SignUpModel) {
     return this.http.post(registerUrl, body);
@@ -23,6 +24,6 @@ export class AuthService {
   }
 
   isAuthenticated() : boolean {
-    return localStorage.getItem('currentUser') !== null;
+    return localStorage.getItem('name') !== null;
   }
 }
