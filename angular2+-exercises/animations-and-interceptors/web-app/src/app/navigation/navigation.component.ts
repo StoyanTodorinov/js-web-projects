@@ -20,8 +20,7 @@ export class NavigationComponent implements OnInit {
   }
 
   logout() {
-    localStorage.clear();
-    this.router.navigate(['/signin']);
+    this.authService.logout();
   }
 
   expand() {
