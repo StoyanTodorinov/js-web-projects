@@ -15,7 +15,8 @@ module.exports = {
         if (err) {
           return res.json(err)
         }
-        res.json(jsonUser)
+        const token = services.tokens.create({ id: jsonUser._id })
+        res.json({ ...jsonUser._doc, token })
       })
     }).catch(err => {
       return res.json(err)
@@ -37,7 +38,8 @@ module.exports = {
         if (err) {
           return res.json(err)
         }
-        res.json(jsonUser)
+        const token = services.tokens.create({ id: jsonUser._id })
+        res.json({ ...jsonUser._doc, token })
       })
     })
   },
