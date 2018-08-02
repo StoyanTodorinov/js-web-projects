@@ -18,16 +18,13 @@ export class FurnitureDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //TODO FIX GETTING PRODUCTS
-    let id = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.id = params['id'];
     })
     this.funitureService
-      .details(id)
+      .details(this.id)
       .subscribe(data => {
         this.product = data;
       })
-    console.log(this.product);
-    console.log(this.id);
   }
 }

@@ -39,9 +39,11 @@ export class ErrorHandleInterceptor implements HttpInterceptor {
             this.router.navigateByUrl('/furniture/all');            
             this.toastr.success('Created!');
           }
+          if (request.url.split('/').includes('delete')) {
+            this.toastr.warning('Deleted!');
+          }
         }
       }, (err: any) => {
-        //TODO HANDLE ALL ERRORS IF POSSIBLE
         this.toastr.error(err.error.message);
       }));
   }
