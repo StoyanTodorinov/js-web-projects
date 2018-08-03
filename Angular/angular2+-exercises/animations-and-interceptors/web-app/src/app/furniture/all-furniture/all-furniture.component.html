@@ -6,7 +6,11 @@
     </div>
   </div>
   <div class="row space-top">
-    <div *ngFor="let product of products" class="col-md-4" >
+    <div *ngFor="let product of products | paginate: {
+       id: 'allFurniture',
+       itemsPerPage: pageSize,
+       currentPage: currentPage
+    }" class="col-md-4">
       <div class="card text-white bg-primary">
         <div class="card-body">
           <blockquote class="card-blockquote">
@@ -24,3 +28,16 @@
     </div>
   </div>
 </div>
+
+<pagination-controls>
+  id="allFurniture"
+  (pageChange)="pageChanged($event)"
+  maxSize="9"
+  directionLinks="true"
+  autoHide="true"
+  previousLabel="Previous"
+  nextLabel="Next"
+  screenReaderPaginationLabel="Pagination"
+  screenReaderPageLabel="page"
+  screenReaderCurrentLabel="You're on page"
+</pagination-controls>
