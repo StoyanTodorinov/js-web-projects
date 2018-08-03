@@ -13,13 +13,13 @@ module.exports = {
       jsonUser = user
       req.logIn(user, (err, user) => {
         if (err) {
-          return res.json(err)
+          return res.status(403).json(err)
         }
         const token = services.tokens.create({ id: jsonUser._id })
-        res.json({ ...jsonUser._doc, token })
+        res.status(201).json({ ...jsonUser._doc, token })
       })
     }).catch(err => {
-      return res.json(err)
+      return res.status(400).json(err)
     })
   },
   login: (req, res) => {
@@ -27,32 +27,32 @@ module.exports = {
     let jsonUser
     services.users.login(reqUser).then(user => {
       if (!user) {
-        return res.json('Invalid username')
+        return res.status(403).json('Invalid username')
       }
 
       if (!user.authenticate(reqUser.password)) {
-        return res.json('Invalid password')
+        return res.status(403).json('Invalid password')
       }
       jsonUser = user
       req.logIn(user, (err, user) => {
         if (err) {
-          return res.json(err)
+          return res.status(403).json(err)
         }
         const token = services.tokens.create({ id: jsonUser._id })
-        res.json({ ...jsonUser._doc, token })
+        res.status(200).json({ ...jsonUser._doc, token })
       })
     })
   },
   logout: (req, res) => {
     req.logout()
-    res.json()
+    res.status(200).json()
   },
   allUsers: async (req, res) => {
-    res.json(await services.users.allUsers())
+    res.status(200).json(await services.users.allUsers())
   },
   update: async (req, res) => {
     let newUser = req.body
     await services.users.update(newUser._id, newUser)
-    res.json({ message: 'User updated!' })
+    res.status(200).json({ message: 'User updated!' })
   }
 }

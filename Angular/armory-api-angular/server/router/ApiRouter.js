@@ -6,7 +6,7 @@ const apiRouter = express.Router()
 
 module.exports = (app) => {
   apiRouter.route('/')
-    .get((req, res) => { res.json('Connected to Armory Api!') })
+    .get((req, res) => { res.status(200).json('Connected to Armory Api!') })
 
   apiRouter.route('/users/register')
     .post(controllers.users.register)
@@ -55,7 +55,7 @@ module.exports = (app) => {
     .get(controllers.products.getProductById)
 
   apiRouter.route('*')
-    .get((req, res) => res.json('Invalid url. Make sure you have written the correct url and try again'))
+    .get((req, res) => res.status(404).json('Invalid url. Make sure you have written the correct url and try again'))
 
   app.use('/api', apiRouter)
 }

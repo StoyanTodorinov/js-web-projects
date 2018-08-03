@@ -16,6 +16,7 @@ let productSchema = new mongoose.Schema({
 let Product = mongoose.model('Product', productSchema)
 
 module.exports = Product
+
 module.exports.seedProducts = () => {
   Product.find({}).then(products => {
     if (products.length > 0) return

@@ -12,6 +12,7 @@ let commentSchema = new mongoose.Schema({
 let Comment = mongoose.model('Comment', commentSchema)
 
 module.exports = Comment
+
 module.exports.seedComments = () => {
   Comment.find({}).then(comments => {
     if (comments.length > 0) return
