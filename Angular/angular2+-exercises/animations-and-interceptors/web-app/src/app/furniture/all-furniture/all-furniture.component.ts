@@ -8,7 +8,10 @@ import { FurnitureService } from '../furniture.service';
   styleUrls: ['./all-furniture.component.css']
 })
 export class AllFurnitureComponent implements OnInit {
+
   products: any;
+  pageSize: number = 1;
+  currentPage: number = 1;
 
   constructor(
     private furnitureService: FurnitureService
@@ -19,5 +22,9 @@ export class AllFurnitureComponent implements OnInit {
       this.products = data;
       console.log(data);
     });
+  }
+
+  pageChanged(ev) {
+    this.currentPage = ev;
   }
 }

@@ -28,16 +28,7 @@
     </div>
   </div>
 </div>
-//TODO FIX PAGINATION
-<pagination-controls>
-  id="allFurniture"
-  (pageChange)="pageChanged($event)"
-  maxSize="3"
-  directionLinks="true"
-  autoHide="true"
-  previousLabel="Previous"
-  nextLabel="Next"
-  screenReaderPaginationLabel="Pagination"
-  screenReaderPageLabel="page"
-  screenReaderCurrentLabel="You're on page"
+
+<pagination-controls id="allFurniture" (pageChange)="pageChanged($event)" maxSize="3" directionLinks="true" autoHide="true" previousLabel="Previous"
+  nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
 </pagination-controls>
