@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  myForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.myForm = this.fb.group({
+      username: ['', [
+        Validators.required
+      ]],
+      password: ['', [
+        Validators.required
+      ]]
+    })
   }
 
+  // TODO Redirect, save token and username, message
+  submit() {
+    this.authService.login(this.myForm.value).subscribe(data => {
+      console.log(data);
+    });
+  }
 }

@@ -2,14 +2,14 @@
   <div class='App-body-title'>
     <p>NEW</p>
   </div>
-  <a *ngFor="let product of newProducts" class='App-product' routerLink='/products/details/{{product.id}}'>
+  <a *ngFor="let product of newProducts$ | async" class='App-product' routerLink='/products/details/{{product.id}}'>
     <p>{{product.name}}</p>
     <img class='App-img-product' src='{{product.img}}' alt='proelia' />
   </a>
   <div class='App-body-title'>
     <p>PROMO</p>
   </div>
-  <a *ngFor="let product of promoProducts" class='App-product' routerLink='/products/details/{{product.id}}'>
+  <a *ngFor="let product of promoProducts$ | async" class='App-product' routerLink='/products/details/{{product.id}}'>
     <p>{{product.name}}</p>
     <img class='App-img-product' src='{{product.img}}' alt='proelia' />
   </a>

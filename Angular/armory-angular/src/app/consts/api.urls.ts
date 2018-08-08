@@ -1,0 +1,20 @@
+const BASE_URL = 'http://localhost:1337/api';
+
+export const REGISTER_URL = BASE_URL + '/users/register';
+export const LOGIN_URL = BASE_URL + '/users/login';
+export const LOGOUT_URL = BASE_URL + '/users/logout';
+export const NEW_PRODUCTS_URL = BASE_URL + '/products/new';
+export const PROMO_PRODUCTS_URL = BASE_URL + '/products/promo';
+export const ALL_USERS_URL = BASE_URL + '/users';
+export const UPDATE_USER_URL = BASE_URL + '/users';
+export const ALL_CATEGORIES_URL = BASE_URL + '/categories';
+export const CREATE_CATEGORY_URL = BASE_URL + '/categories';
+export const CREATE_COMMENT_URL = BASE_URL + '/comments';
+export const UPDATE_COMMENT_URL = BASE_URL + '/comments';
+export const GET_COMMENTS_BY_PRODUCT_ID_URL = BASE_URL + '/comments/';
+export const DELETE_COMMENT_BY_ID_URL = BASE_URL + '/comments/commentId=';
+export const UPDATE_PRODUCT_URL = BASE_URL + '/products';
+export const CREATE_PRODUCT_URL = BASE_URL + '/products';
+export const ALL_PRODUCTS_BY_ARRAY_OF_IDS_URL = BASE_URL + '/products/array=:array';
+export const ALL_PRODUCTS_BY_CATEGORYNAME_URL = BASE_URL + '/products/category=:categoryName';
+export const PRODUCTS_BY_ID_URL = BASE_URL + '/products/product=:productId';

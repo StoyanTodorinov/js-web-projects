@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const NEW_URL = 'http://localhost:1337/api/products/new';
-const PROMO_URL = 'http://localhost:1337/api/products/promo';
+import { NEW_PRODUCTS_URL, PROMO_PRODUCTS_URL } from '../consts/api.urls';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +13,10 @@ export class HomeService {
   ) { }
 
   getNewProducts() {
-    return this.http.get(NEW_URL);
+    return this.http.get(NEW_PRODUCTS_URL);
   }
 
   getPromoProducts() {
-    return this.http.get(PROMO_URL);
+    return this.http.get(PROMO_PRODUCTS_URL);
   }
 }

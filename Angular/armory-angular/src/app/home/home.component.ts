@@ -8,21 +8,15 @@ import { HomeService } from './home.service';
 })
 export class HomeComponent implements OnInit {
 
-  newProducts;
-  promoProducts;
+  newProducts$;
+  promoProducts$;
 
   constructor(
     private homeService: HomeService
   ) { }
 
   ngOnInit() {
-    this.homeService.getNewProducts().subscribe(data => {
-      this.newProducts = data;
-      console.log(data);
-    })
-    this.homeService.getPromoProducts().subscribe(data => {
-      this.promoProducts = data;
-      console.log(data);
-    })
+    this.newProducts$ = this.homeService.getNewProducts();
+    this.promoProducts$ = this.homeService.getPromoProducts();
   }
 }
