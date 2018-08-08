@@ -127,7 +127,7 @@ body {
 }
 
 .App-body {
-  background-image: url("./assets/images/home-background.jpg");
+  background-image: url('assets/images/home-background.jpg');
   text-shadow: 1px 1px 2px #000000;
 }
 

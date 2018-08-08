@@ -1,7 +1,7 @@
 <header class='App-header'>
   <ul class='App-nav-list'>
     <li class='App-nav-list-item App-nav-float-left'>
-      <a to='/'>
+      <a routerLink='home'>
         <img src="../../../favicon.ico" class='App-logo' alt='logo' />
       </a>
     </li>
@@ -10,16 +10,16 @@
     </li>
     <div>
       <li class='App-nav-list-item'>
-        <a class='App-nav-link' href='/favorites'>Favorites</a>
+        <a class='App-nav-link' routerLink='account/favorites'>Favorites</a>
       </li>
       <li class='App-nav-list-item'>
-        <a class='App-nav-link' href='/logout'>Logout</a>
+        <a class='App-nav-link' routerLink='logout()'>Logout</a>
       </li>
       <li class='App-nav-list-item'>
-        <a class='App-nav-link' href='/login'>Login</a>
+        <a class='App-nav-link' routerLink='auth/login'>Login</a>
       </li>
       <li class='App-nav-list-item'>
-        <a class='App-nav-link' href='/register'>Register</a>
+        <a class='App-nav-link' routerLink='auth/register'>Register</a>
       </li>
     </div>
   </ul>
