@@ -1,36 +1,49 @@
-<!-- <div class='App-body-title'>
+<div class='App-body-title'>
   <p>REGISTER</p>
 </div>
-<form class='App-auth'>
+<form class='App-auth' [formGroup]='myForm' (submit)='submit()'>
   <p>
     <label>
       Name
-      <input class='App-form-input' type='text' id='name' name='name' />
+      <input class='App-form-input' type='text' formControlName='name' />
+      <div class='App-input-error' *ngIf='name.errors?.required && name.touched'>Name is required</div>
+      <div class='App-input-error' *ngIf='name.errors?.minlength && name.touched'>Name must be at least 4 symbols</div>
+      <div class='App-input-error' *ngIf='name.errors?.maxlength && name.touched'>Name must be less than 16 symbols</div>
     </label>
   </p>
   <p>
     <label>
       Username
-      <input class='App-form-input' type='text' id='username' name='username' />
+      <input class='App-form-input' type='text' formControlName='username' />
+      <div class='App-input-error' *ngIf='username.errors?.required && username.touched'>Username is required</div>
+      <div class='App-input-error' *ngIf='username.errors?.minlength && username.touched'>Name must be at least 4 symbols</div>
+      <div class='App-input-error' *ngIf='username.errors?.maxlength && username.touched'>Name must be less than 16 symbols</div>
     </label>
   </p>
   <p>
     <label>
       Email
-      <input class='App-form-input' type='email' id='email' name='email' />
+      <input class='App-form-input' type='email' formControlName='email' />
+      <div class='App-input-error' *ngIf='email.errors?.required && email.touched'>Email is required</div>
+      <div class='App-input-error' *ngIf='email.errors?.email && email.touched'>Provide a valid email</div>
     </label>
   </p>
   <p>
     <label>
       Password
-      <input class='App-form-input' type='password' id='password' name='password' />
+      <input class='App-form-input' type='password' formControlName='password' />
+      <div class='App-input-error' *ngIf='password.errors?.required && password.touched'>Password is required</div>
+      <div class='App-input-error' *ngIf='password.errors?.minlength && password.touched'>Password must be at least 6 symbols</div>
     </label>
   </p>
   <p>
     <label>
       Confirm Password
-      <input class='App-form-input' type='password' id='password2' name='password2' />
+      <input class='App-form-input' type='password' formControlName='password2' />
+      <div class='App-input-error' *ngIf='password2.errors?.required && password2.touched'>Confirm password is required</div>
+      <div class='App-input-error' *ngIf='password2.errors?.minlength && password2.touched'>Confirm password must be at least 6 symbols</div>
+      <div class='App-input-error' *ngIf='password2.valid && password.valid && password2.value !== password.value'>Passwords don't match</div>
     </label>
   </p>
-  <input class='App-form-submit' type='submit' />
-</form> -->
+  <input class='App-form-submit' type='submit' [disabled]='myForm.invalid' />
+</form>

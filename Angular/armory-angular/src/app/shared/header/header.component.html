@@ -23,7 +23,10 @@
       <li class='App-nav-list-item'>
         <a class='App-nav-link' (click)='logout()'>Logout</a>
       </li>
-      <li class='App-nav-list-item' *ngIf='isAdmin()'>
+    </div>
+    <!-- TODO FIX CREATE BUTTON -->
+    <div *ngIf='isAdmin()'>
+      <li class='App-nav-list-item'>
         <a class='App-nav-link' routerLink='/admin/createCategory'>Create category</a>
       </li>
     </div>

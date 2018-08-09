@@ -400,3 +400,9 @@ body {
   text-align: center;
   width: 60%;  
 }
+
+.App-input-error {
+  font-size: 20px;
+  color: yellow;
+  font-style: italic;
+}

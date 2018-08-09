@@ -2,7 +2,7 @@
   <div class='App-body-title'>
     <p>NEW</p>
   </div>
-  <a *ngFor="let product of newProducts$ | async" class='App-product' routerLink='/products/details/{{product.id}}'>
+  <a *ngFor="let product of newProducts$ | async" class='App-product' routerLink='/products/details/{{product._id}}'>
     <p>{{product.name}} {{product.promo > 0 ? ' - ' + product.promo + '%' : ''}}</p>
     <img class='App-img-product' src='{{product.img}}' alt='proelia' />
   </a>
