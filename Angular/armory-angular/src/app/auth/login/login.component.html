@@ -14,5 +14,5 @@
       <input class='App-form-input' type='password' formControlName='password' />
     </label>
   </p>
-  <input class='App-form-submit' type='submit' />
+  <input class='App-form-submit' [disabled]='myForm.invalid' type='submit' />
 </form>

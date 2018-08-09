@@ -27,10 +27,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  // TODO Redirect, save token and username, message
   submit() {
-    this.authService.login(this.myForm.value).subscribe(data => {
-      console.log(data);
-    });
+    this.authService.login(this.myForm.value);
   }
 }

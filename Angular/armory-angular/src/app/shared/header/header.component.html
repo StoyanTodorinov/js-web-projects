@@ -8,18 +8,23 @@
     <li class='App-nav-list-item'>
       <a class='App-title'>Welcome to the armory</a>
     </li>
-    <div>
+    <div *ngIf='!isLoggedIn()'>
       <li class='App-nav-list-item'>
-        <a class='App-nav-link' routerLink='account/favorites'>Favorites</a>
+        <a class='App-nav-link' routerLink='/auth/login'>Login</a>
       </li>
       <li class='App-nav-list-item'>
-        <a class='App-nav-link' routerLink='logout()'>Logout</a>
+        <a class='App-nav-link' routerLink='/auth/register'>Register</a>
+      </li>
+    </div>
+    <div *ngIf='isLoggedIn()'>
+      <li class='App-nav-list-item'>
+        <a class='App-nav-link' routerLink='/account/favorites'>Favorites</a>
       </li>
       <li class='App-nav-list-item'>
-        <a class='App-nav-link' routerLink='auth/login'>Login</a>
+        <a class='App-nav-link' (click)='logout()'>Logout</a>
       </li>
-      <li class='App-nav-list-item'>
-        <a class='App-nav-link' routerLink='auth/register'>Register</a>
+      <li class='App-nav-list-item' *ngIf='isAdmin()'>
+        <a class='App-nav-link' routerLink='/admin/createCategory'>Create category</a>
       </li>
     </div>
   </ul>
