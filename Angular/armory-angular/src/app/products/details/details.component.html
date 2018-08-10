@@ -1,3 +1,45 @@
-<p>
-  details works!
-</p>
+<div *ngIf='product$ | async as product'>
+  <div class='App-body-title'>
+    <p>{{product.name}} details</p>
+    {{addToFavorites}} {{editProduct}}
+  </div>
+  <div class='App-details'>
+    <p>{{product.name}}</p>
+    <p>{{price}}</p>
+    <p>{{product.description}}</p>
+    {{additionalInformation(product.additionalInformation)}}
+  </div>
+  <div class='App-details-img-container'>
+    <img class='App-details-img' src={{product.img}} alt='{{product.name}}' />
+  </div>
+</div>
+<div class='App-comments' *ngIf='comments$ | async as comments'>
+  <div class='App-body-title-comments'>
+    <p>Comments</p>
+  </div>
+  <div class='App-details-comments'>
+    <div *ngFor='let comment of comments'>
+      <div class='App-comment'>
+        <span class='App-comment-name'>Stoyan</span>
+        <span class='App-comment-time'>10 mins ago</span>
+        Wtf is this?
+      </div>
+      <div class='App-comment-btn-wrapper'>
+        <button class='App-comment-btn' (click)='editComment()'>
+          {{commentBtnText}}
+        </button>
+        <button class='App-comment-btn' (click)='removeComment(12)'> Remove
+        </button>
+      </div>
+      <hr />
+    </div>
+    <div class='App-add-comment-btn'>
+      <div *ngIf='showInput'>
+        <input />
+      </div>
+      <button class='App-add-comment' (click)='addPostComment()'>
+        {{addPostCommentText}}
+      </button>
+    </div>
+  </div>
+</div>

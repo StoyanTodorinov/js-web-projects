@@ -2,8 +2,5 @@
   <div class='App-body-title'>
     <p>PROMOES</p>
   </div>
-  <a class='App-product' *ngFor='let product of products$ | async' routerLink='/products/details/{{product._id}}'>
-    <p>{{product.name}} {{product.promo > 0 ? ' - ' + product.promo + '%' : ''}}</p>
-    <img class='App-img-product' src='{{product.img}}' alt='promo product' />
-  </a>
+  <app-product [products]='products$'></app-product>
 </div>

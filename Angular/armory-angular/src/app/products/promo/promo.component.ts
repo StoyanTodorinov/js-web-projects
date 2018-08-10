@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductPromoComponent implements OnInit {
 
-  products$: Observable<Object>
+  products$: Observable<Object>;
 
   constructor(
     private productsService: ProductsService 

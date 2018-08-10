@@ -17,4 +17,4 @@ export const UPDATE_PRODUCT_URL = BASE_URL + '/products';
 export const CREATE_PRODUCT_URL = BASE_URL + '/products';
 export const ALL_PRODUCTS_BY_ARRAY_OF_IDS_URL = BASE_URL + '/products/array=:array';
 export const ALL_PRODUCTS_BY_CATEGORYNAME_URL = BASE_URL + '/products/category=';
-export const PRODUCTS_BY_ID_URL = BASE_URL + '/products/product=:productId';
+export const PRODUCTS_BY_ID_URL = BASE_URL + '/products/product=';
