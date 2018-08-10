@@ -16,12 +16,15 @@ import { HomeService } from './home/home.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoriesService } from './categories/categories.service';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ProductsService } from './products/products.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { CategoriesService } from './categories/categories.service';
   providers: [
     HomeService,
     CategoriesService,
+    ProductsService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorHandleInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],

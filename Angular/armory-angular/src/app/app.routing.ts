@@ -9,15 +9,17 @@ import { AdminModule } from './admin/admin.module';
 import { CategoriesComponent } from './categories/categories.component';
 import { AuthGuard } from './guards/auth-guard.guard';
 import { AdminGuard } from './guards/admin-guard.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'auth', loadChildren: () => AuthModule },
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
-  { path: 'products', loadChildren: () => ProductsModule },
-  { path: 'account', loadChildren: () => AccountModule },
-  { path: 'admin', loadChildren: () => AdminModule },
+  { path: 'products', loadChildren: () => ProductsModule, canActivate: [AuthGuard] },
+  { path: 'account', loadChildren: () => AccountModule, canActivate: [AuthGuard] },
+  { path: 'admin', loadChildren: () => AdminModule, canActivate: [AdminGuard] },
+  { path: '**', component: NotFoundComponent }
 ]
 
 @NgModule({
@@ -25,3 +27,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+//TODO CREATE CREATEPRODUCT COMPONENT

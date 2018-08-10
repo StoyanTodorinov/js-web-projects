@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../products.service';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductCategoryComponent implements OnInit {
 
-  constructor() { }
+  products$: Observable<Object>;
+  buttonValue: string = 'Add product';
+  title: string;
+
+  constructor(
+    private productsService: ProductsService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      let categoryName = params['categoryName'];
+      this.products$ = this.productsService.getProductsByCategoryName(categoryName);
+      this.title = categoryName;
+    })
   }
-
 }

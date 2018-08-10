@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   isAdmin() {
-    return localStorage.getItem('isAdmin');
+    return JSON.parse(localStorage.getItem('isAdmin'));
   }
 
   getToken() {
