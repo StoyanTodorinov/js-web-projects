@@ -21,10 +21,6 @@ export class AuthService {
     private router: Router
   ) { }
 
-  private saveUserData(userData) {
-    localStorage.setItem('user', JSON.stringify(userData));
-  }
-
   login(data) {
     return this.http.post(LOGIN_URL, data).subscribe(userData => {
       this.saveUserData(userData);
@@ -42,6 +38,7 @@ export class AuthService {
   }
 
   update(user) {
+    this.saveUserData(user);
     return this.http.put(UPDATE_USER_URL, user);
   }
 
@@ -86,5 +83,9 @@ export class AuthService {
 
   private getUser() {
     return JSON.parse(localStorage.getItem('user'));
+  }
+
+  private saveUserData(userData) {
+    localStorage.setItem('user', JSON.stringify(userData));
   }
 }

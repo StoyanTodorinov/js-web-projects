@@ -6,7 +6,7 @@
   </p>
   <p *ngIf='commentBtnText === "Edit"' class='App-comment-text'>{{' - ' + comment.text}}</p>
 </div>
-<div class='App-comment-btn-wrapper'>
+<div class='App-comment-btn-wrapper' *ngIf='username() === comment.author || isAdmin()'>
   <button class='App-comment-btn' (click)='edit()'>
     {{commentBtnText}}
   </button>

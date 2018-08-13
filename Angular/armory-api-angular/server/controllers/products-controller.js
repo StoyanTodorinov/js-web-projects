@@ -17,6 +17,9 @@ module.exports = {
   },
   getAllProductsByArrayOfIds: async (req, res) => {
     let array = req.params.array.split(',')
+    if (array[0] === '[]') {
+      return res.status(200).json([])
+    }
     res.status(200).json(await services.products.getAllProductsByArrayOfIds(array))
   },
   createProduct: async (req, res) => {

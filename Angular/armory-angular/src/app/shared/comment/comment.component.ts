@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CommentsService } from '../../services/comments.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-comment',
@@ -16,7 +17,8 @@ export class CommentComponent implements OnInit {
 
   constructor(
     private commentsService: CommentsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() { }
@@ -51,5 +53,13 @@ export class CommentComponent implements OnInit {
 
   remove() {
     this.removeComment(this.comment._id);
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
+
+  username() {
+    return this.authService.isLoggedIn().username;
   }
 }

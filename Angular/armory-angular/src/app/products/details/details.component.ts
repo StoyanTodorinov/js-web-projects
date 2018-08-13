@@ -15,10 +15,10 @@ export class ProductDetailsComponent implements OnInit {
 
   private ADD_TEXT = 'Add to favorites';
   private REMOVE_TEXT = 'Remove from favorites';
-  private POST_TEXT = 'Post comment';
-  private NEW_TEXT = 'New comment';
+  private POST_COMMENT_TEXT = 'Post comment';
+  private NEW_COMMENT_TEXT = 'New comment';
 
-  addPostCommentText: string = 'New comment';
+  addPostCommentText: string = this.NEW_COMMENT_TEXT;
   product: any;
   comments: any;
   showInput: boolean = false;
@@ -27,28 +27,22 @@ export class ProductDetailsComponent implements OnInit {
   productId: string;
   removeComment: Function;
   addToFavoritesBtnText: string;
+  price: string;
 
-  //TODO FIX ADD TO FAVORITES BUTTON
   constructor(
+    private route: ActivatedRoute,
     private productsService: ProductsService,
     private commentsService: CommentsService,
-    private route: ActivatedRoute,
     private authService: AuthService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit() {
-    this.addToFavoritesBtnText = this.checkAddButtonText();
-      this.route.params.subscribe(params => {
-        this.productId = params['productId'];
-        this.productsService.getProductDetailsById(this.productId).subscribe(data => {
-          this.product = data;
-        });
-        this.productsService.getProductCommentsByProductId(this.productId)
-          .subscribe(data => {
-            this.comments = data;
-          });
-      })
+    this.route.params.subscribe(params => {
+      this.productId = params['productId'];
+      this.addToFavoritesBtnText = this.checkAddButtonText();
+      this.ajax();
+    })
     this.removeComment = this.remove.bind(this);
   }
 
@@ -62,18 +56,16 @@ export class ProductDetailsComponent implements OnInit {
 
   checkAddButtonText() {
     if (this.authService.getFavorites().includes(this.productId)) {
-      console.log('in');
       return 'Remove from favorites';
     }
     return 'Add to favorites';
   }
 
   addPostComment() {
-    if (this.addPostCommentText === this.POST_TEXT) {
+    if (this.addPostCommentText === this.POST_COMMENT_TEXT) {
       if (this.comment === '') {
         this.toastr.error('You cannot submit an empty comment');
-        this.addPostCommentText === this.POST_TEXT ? this.addPostCommentText = this.NEW_TEXT : this.addPostCommentText = this.POST_TEXT;
-        this.addPostCommentText === this.POST_TEXT ? this.showInput = true : this.showInput = false;
+        this.changeaddPostCommentText();
         return;
       }
       let comment = {
@@ -86,14 +78,7 @@ export class ProductDetailsComponent implements OnInit {
         this.toastr.success('Comment added');
       });
     }
-    this.addPostCommentText === this.POST_TEXT ?
-      this.addPostCommentText = this.NEW_TEXT :
-      this.addPostCommentText = this.POST_TEXT;
-
-    this.addPostCommentText === this.POST_TEXT ?
-      this.showInput = true :
-      this.showInput = false;
-
+    this.changeaddPostCommentText();
     this.comment = '';
   }
 
@@ -133,5 +118,27 @@ export class ProductDetailsComponent implements OnInit {
       return 'Additional information:<br />' + result.slice(0, -2).toLowerCase();
     }
     return '';
+  }
+
+  formatPrice() {
+    this.price = this.product.promo > 0 ?
+      (+this.product.price - +this.product.price * (this.product.promo / 100)).toFixed(2)
+      + '$ (' + this.product.price + '$)'
+      : this.product.price + '$';
+  }
+
+  ajax() {
+    this.productsService.getProductDetailsById(this.productId).subscribe(data => {
+      this.product = data;
+      this.formatPrice();
+    });
+    this.productsService.getProductCommentsByProductId(this.productId).subscribe(data => {
+      this.comments = data;
+    });
+  }
+
+  changeaddPostCommentText() {
+    this.addPostCommentText === this.POST_COMMENT_TEXT ? this.addPostCommentText = this.NEW_COMMENT_TEXT : this.addPostCommentText = this.POST_COMMENT_TEXT;
+    this.addPostCommentText === this.POST_COMMENT_TEXT ? this.showInput = true : this.showInput = false;
   }
 }

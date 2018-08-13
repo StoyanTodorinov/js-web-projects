@@ -1,3 +1,43 @@
-<p>
-  my-profile works!
-</p>
+<div>
+  <div class='App-body-title'>
+    <p>MY PROFILE</p>
+  </div>
+  <div class='App-details'>
+    <p>Username: {{user.username}}</p>
+    <div *ngIf='!isEditing'>
+      <p>Name: {{name.value}}</p>
+      <p>Email: {{email.value}}</p>
+    </div>
+    <button class='App-profile-btn' (click)='editClick()' *ngIf='!isEditing'>Edit</button>
+    <form [formGroup]="myForm" (submit)='submit()' *ngIf='isEditing'>
+      <p>
+        <label>
+          Name:
+          <input class='App-profile-form-input' type='text' formControlName='name' required />
+          <div class='App-input-error' *ngIf='name.errors?.required && name.touched'>Name is required</div>
+          <div class='App-input-error' *ngIf='name.errors?.minlength && name.touched'>Name must be at least 4 symbols</div>
+          <div class='App-input-error' *ngIf='name.errors?.maxlength && name.touched'>Name must be less than 16 symbols</div>
+        </label>
+      </p>
+      <p>
+        <label>
+          Email:
+          <input class='App-profile-form-input' type='email' formControlName='email' />
+          <div class='App-input-error' *ngIf='email.errors?.required && email.touched'>Email is required</div>
+          <div class='App-input-error' *ngIf='email.errors?.email && email.touched'>Provide a valid email</div>
+        </label>
+      </p>
+      <p>
+        <label>
+          Image url:
+          <input class='App-profile-form-input' type='url' formControlName='imgUrl' required />
+          <div class='App-input-error' *ngIf='imgUrl.errors?.required && imgUrl.touched'>Image url is required</div>
+        </label>
+      </p>
+      <button class='App-profile-btn' type='submit' [disabled]='myForm.invalid'>Save</button>
+    </form>
+  </div>
+  <div class='App-details-img-container'>
+    <img class='App-details-img' src='{{imgUrl.value}}' alt='Profile' />
+  </div>
+</div>
