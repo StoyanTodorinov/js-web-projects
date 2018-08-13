@@ -1,0 +1,16 @@
+<div class='App-comment'>
+  <span class='App-comment-name'>{{comment.author}}</span>
+  <span class='App-comment-time'>{{formatTime(comment.date)}}</span>
+  <p>
+    <input *ngIf='commentBtnText === "Save"' class='App-comment-edit-input' type='text' [(ngModel)]='newComment' />
+  </p>
+  <p *ngIf='commentBtnText === "Edit"' class='App-comment-text'>{{' - ' + comment.text}}</p>
+</div>
+<div class='App-comment-btn-wrapper'>
+  <button class='App-comment-btn' (click)='edit()'>
+    {{commentBtnText}}
+  </button>
+  <button class='App-comment-btn' (click)='remove()'> Remove
+  </button>
+</div>
+<hr />

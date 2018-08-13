@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { NEW_PRODUCTS_URL, PROMO_PRODUCTS_URL } from '../consts/api.urls';
+import { NEW_PRODUCTS_URL, PROMO_PRODUCTS_URL } from '../api.constants/api.urls';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { ALL_CATEGORIES_URL } from '../consts/api.urls';
+import { ALL_CATEGORIES_URL } from '../api.constants/api.urls';
 
 @Injectable({
   providedIn: 'root'

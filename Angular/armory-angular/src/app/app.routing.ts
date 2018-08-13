@@ -9,7 +9,7 @@ import { AdminModule } from './admin/admin.module';
 import { CategoriesComponent } from './categories/categories.component';
 import { AuthGuard } from './guards/auth-guard.guard';
 import { AdminGuard } from './guards/admin-guard.guard';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },

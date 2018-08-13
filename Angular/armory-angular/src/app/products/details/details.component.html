@@ -1,41 +1,30 @@
-<div *ngIf='product$ | async as product'>
+<div *ngIf='product'>
   <div class='App-body-title'>
     <p>{{product.name}} details</p>
-    {{addToFavorites}} {{editProduct}}
+    <button class='App-add-to-favorites-btn' (click)=addProductToFavorites()>{{addToFavoritesBtnText}}</button>
+    <button *ngIf='isAdmin()' class='App-add-to-favorites-btn'><a class='App-create-link' routerLink='/admin/edit/{{productId}}'>Edit product</a></button>
   </div>
   <div class='App-details'>
     <p>{{product.name}}</p>
     <p>{{price}}</p>
     <p>{{product.description}}</p>
-    {{additionalInformation(product.additionalInformation)}}
+    <p [innerHtml]='additionalInformation(product.additionalInformation)'></p>
   </div>
   <div class='App-details-img-container'>
     <img class='App-details-img' src={{product.img}} alt='{{product.name}}' />
   </div>
 </div>
-<div class='App-comments' *ngIf='comments$ | async as comments'>
+<div class='App-comments'>
   <div class='App-body-title-comments'>
     <p>Comments</p>
   </div>
   <div class='App-details-comments'>
     <div *ngFor='let comment of comments'>
-      <div class='App-comment'>
-        <span class='App-comment-name'>Stoyan</span>
-        <span class='App-comment-time'>10 mins ago</span>
-        Wtf is this?
-      </div>
-      <div class='App-comment-btn-wrapper'>
-        <button class='App-comment-btn' (click)='editComment()'>
-          {{commentBtnText}}
-        </button>
-        <button class='App-comment-btn' (click)='removeComment(12)'> Remove
-        </button>
-      </div>
-      <hr />
+      <app-comment [comment]='comment' [removeComment]='removeComment'></app-comment>
     </div>
     <div class='App-add-comment-btn'>
       <div *ngIf='showInput'>
-        <input />
+        <input class='App-add-comment-input' type='text' [(ngModel)]="comment" />
       </div>
       <button class='App-add-comment' (click)='addPostComment()'>
         {{addPostCommentText}}

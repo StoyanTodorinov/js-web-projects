@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 import {
   ALL_PRODUCTS_BY_CATEGORYNAME_URL,
   PROMO_PRODUCTS_URL,
   PRODUCTS_BY_ID_URL,
-  GET_COMMENTS_BY_PRODUCT_ID_URL
-} from '../consts/api.urls';
+  GET_COMMENTS_BY_PRODUCT_ID_URL,
+  ALL_PRODUCTS_BY_ARRAY_OF_IDS_URL
+} from '../api.constants/api.urls';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +32,13 @@ export class ProductsService {
 
   getProductCommentsByProductId(id) {
     return this.http.get(GET_COMMENTS_BY_PRODUCT_ID_URL + id);
+  }
+
+  getProductsByArrayOfIds(array) {
+    if (!array.length) {
+      array = '[]';
+    }
+  
+    return this.http.get(ALL_PRODUCTS_BY_ARRAY_OF_IDS_URL + array);
   }
 }

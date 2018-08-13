@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class AdminGuard implements CanActivate {
       return true;
     }
 
-    //UPDATE FIGURE OUT A WAY TO RENDER NOT FOUND WITHOUT CHANGING THE URL
+    //TODO FIGURE OUT A WAY TO RENDER NOT FOUND WITHOUT CHANGING THE URL
     this.router.navigateByUrl('/notFound', { skipLocationChange: true });
     return false;
   }

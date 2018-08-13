@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../products.service';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable } from 'rxjs';
-
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { ProductsService } from '../../services/products.service';
+import { CommentsService } from '../../services/comments.service';
 
 @Component({
   selector: 'app-details',
@@ -13,52 +13,125 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  commentBtnText: string = 'Edit';
-  addPostCommentText: string = 'New comment';
-  product$: Observable<Object>;
-  comments$: Observable<Object>;
-  showInput: boolean = false;
+  private ADD_TEXT = 'Add to favorites';
+  private REMOVE_TEXT = 'Remove from favorites';
+  private POST_TEXT = 'Post comment';
+  private NEW_TEXT = 'New comment';
 
+  addPostCommentText: string = 'New comment';
+  product: any;
+  comments: any;
+  showInput: boolean = false;
+  comment: string = '';
+  newComment: string;
+  productId: string;
+  removeComment: Function;
+  addToFavoritesBtnText: string;
+
+  //TODO FIX ADD TO FAVORITES BUTTON
   constructor(
     private productsService: ProductsService,
+    private commentsService: CommentsService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      let productId = params['productId'];
-      this.product$ = this.productsService.getProductDetailsById(productId);
-      this.comments$ = this.productsService.getProductCommentsByProductId(productId);
-    })
+    this.addToFavoritesBtnText = this.checkAddButtonText();
+      this.route.params.subscribe(params => {
+        this.productId = params['productId'];
+        this.productsService.getProductDetailsById(this.productId).subscribe(data => {
+          this.product = data;
+        });
+        this.productsService.getProductCommentsByProductId(this.productId)
+          .subscribe(data => {
+            this.comments = data;
+          });
+      })
+    this.removeComment = this.remove.bind(this);
   }
 
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
 
-  editComment() {
-    // TODO UPDATE COMMENT IF COMMENT VALUE IS CHANGED
-    this.commentBtnText === 'Edit' ? this.commentBtnText = 'Save' : this.commentBtnText = 'Edit';
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 
-  removeComment(id) {
-    // TODO DELETE COMMENT
-    console.log(id);
+  checkAddButtonText() {
+    if (this.authService.getFavorites().includes(this.productId)) {
+      console.log('in');
+      return 'Remove from favorites';
+    }
+    return 'Add to favorites';
   }
 
   addPostComment() {
-    // TODO POST A NEW COMMENT
-    this.addPostCommentText === 'Post comment' ? this.addPostCommentText = 'New comment' : this.addPostCommentText = 'Post comment';
-    this.addPostCommentText === 'Post comment' ? this.showInput = true : this.showInput = false;
+    if (this.addPostCommentText === this.POST_TEXT) {
+      if (this.comment === '') {
+        this.toastr.error('You cannot submit an empty comment');
+        this.addPostCommentText === this.POST_TEXT ? this.addPostCommentText = this.NEW_TEXT : this.addPostCommentText = this.POST_TEXT;
+        this.addPostCommentText === this.POST_TEXT ? this.showInput = true : this.showInput = false;
+        return;
+      }
+      let comment = {
+        text: this.comment,
+        productId: this.productId,
+        author: localStorage.getItem('username')
+      }
+      this.commentsService.createComment(comment).subscribe(comment => {
+        this.comments.push(comment);
+        this.toastr.success('Comment added');
+      });
+    }
+    this.addPostCommentText === this.POST_TEXT ?
+      this.addPostCommentText = this.NEW_TEXT :
+      this.addPostCommentText = this.POST_TEXT;
+
+    this.addPostCommentText === this.POST_TEXT ?
+      this.showInput = true :
+      this.showInput = false;
+
+    this.comment = '';
+  }
+
+  remove(id) {
+    this.comments = this.comments.filter(x => x._id !== id);
+    this.commentsService.deleteComment(id).subscribe(data => {
+      this.toastr.warning('Comment removed');
+    });
+  }
+
+  addProductToFavorites() {
+    let favorites = this.authService.getFavorites();
+    let message = `Added ${this.product.name} to favorites`;
+    if (this.addToFavoritesBtnText == this.ADD_TEXT) {
+      favorites.push(this.productId);
+      this.addToFavoritesBtnText = this.REMOVE_TEXT;
+    } else {
+      favorites = favorites.filter(x => x !== this.productId);
+      this.addToFavoritesBtnText = this.ADD_TEXT
+      message = `Removed ${this.product.name} from favorites`;
+    }
+    this.authService.setFavorites(favorites).subscribe(data => {
+      this.toastr.info(message);
+    });
   }
 
   additionalInformation(data) {
-    // TODO FIX FORMATTING THE DATA
-    let result = ''
-    for (const key in data) {
-      result += key + ': ' + data[key] + '\n';
+    if (data.length) {
+      let result = '';
+      for (const key in data) {
+        if (+key % 2 === 1) {
+          result += data[key] + '<br />';
+        } else {
+          result += '&#160;&#160;&#160;\u2022 ' + data[key] + ': ';
+        }
+      }
+      return 'Additional information:<br />' + result.slice(0, -2).toLowerCase();
     }
-    return result
+    return '';
   }
 }
