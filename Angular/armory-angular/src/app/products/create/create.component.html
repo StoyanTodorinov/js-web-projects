@@ -1,3 +1,47 @@
-<p>
-  create works!
-</p>
+<div class='App-body-title'>
+  <p>CREATE</p>
+</div>
+<form class='App-auth' [formGroup]='myForm' (submit)='submit()'>
+  <p>
+    <label>
+      Name
+      <input class='App-form-input' type='text' formControlName='name' />
+      <div class='App-input-error' *ngIf='name.errors?.required && name.touched'>Name is required</div>
+      <div class='App-input-error' *ngIf='name.errors?.minlength && name.touched'>Name must be at least 4 symbols</div>
+      <div class='App-input-error' *ngIf='name.errors?.maxlength && name.touched'>Name must be less than 16 symbols</div>
+    </label>
+  </p>
+  <p>
+    <label>
+      Price
+      <input class='App-form-input' type='number' formControlName='price' />
+      <div class='App-input-error' *ngIf='price.errors?.required && price.touched'>Price is required</div>
+      <div class='App-input-error' *ngIf='price.errors?.min && price.touched'>Price cannot be zero or lower</div>
+    </label>
+  </p>
+  <p>
+    <label>
+      Image Url
+      <input class='App-form-input' type='url' formControlName='img' />
+      <div class='App-input-error' *ngIf='img.errors?.required && img.touched'>Image url is required</div>
+    </label>
+  </p>
+  <p>
+    <label>
+      Description
+      <textarea class='App-form-input' formControlName='description'></textarea>
+      <div class='App-input-error' *ngIf='description.errors?.required && description.touched'>Description is required</div>
+      <div class='App-input-error' *ngIf='description.errors?.minlength && description.touched'>Description must be at least 10 symbols</div>
+      <div class='App-input-error' *ngIf='description.errors?.maxlength && description.touched'>Description must be less than 100 symbols</div>
+    </label>
+  </p>
+  <p>
+    <label>
+      Addition Information
+      <i>(optional)</i>
+      <textarea class='App-form-input' formControlName='additionalInformation'></textarea>
+      <!-- <div class='App-input-error' *ngIf='additionalInformation.errors?.pattern && additionalInformation.touched'>Addition Information is in incorrect format (example: 'material, stainless steel')</div> -->
+    </label>
+  </p>
+  <input class='App-form-submit' type='submit' [disabled]='myForm.invalid'/>
+</form>

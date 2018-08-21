@@ -30,8 +30,9 @@
       <p>
         <label>
           Image url:
-          <input class='App-profile-form-input' type='url' formControlName='imgUrl' required />
+          <input class='App-profile-form-input' type='url' formControlName='imgUrl' />
           <div class='App-input-error' *ngIf='imgUrl.errors?.required && imgUrl.touched'>Image url is required</div>
+          <div class='App-input-error' *ngIf='imgUrl.errors?.pattern && imgUrl.touched'>Provide a valid image url</div>
         </label>
       </p>
       <button class='App-profile-btn' type='submit' [disabled]='myForm.invalid'>Save</button>

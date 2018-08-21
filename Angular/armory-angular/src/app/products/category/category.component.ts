@@ -13,6 +13,7 @@ export class ProductCategoryComponent implements OnInit {
   products$: Observable<Object>;
   buttonValue: string = 'Add product';
   title: string;
+  categoryName: string;
 
   constructor(
     private productsService: ProductsService,
@@ -21,9 +22,9 @@ export class ProductCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      let categoryName = params['categoryName'];
-      this.products$ = this.productsService.getProductsByCategoryName(categoryName);
-      this.title = categoryName;
+      this.categoryName = params['categoryName'];
+      this.products$ = this.productsService.getProductsByCategoryName(this.categoryName);
+      this.title = this.categoryName;
     })
   }
 }

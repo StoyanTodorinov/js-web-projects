@@ -38,7 +38,9 @@ export class MyProfileComponent implements OnInit {
         Validators.required,
         Validators.email
       ]],
-      imgUrl: [this.user.imgUrl, []]
+      imgUrl: [this.user.imgUrl, [
+        Validators.required
+      ]]
     });
   }
 

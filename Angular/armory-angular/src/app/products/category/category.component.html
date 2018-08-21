@@ -3,7 +3,7 @@
     <p>{{title}}</p>
   </div>
   <button class='App-to-product-create'>
-    <a class='App-create-link' routerLink='/products/create'>Add product</a>
+    <a class='App-create-link' routerLink='/products/create/{{categoryName}}'>Add product</a>
   </button>
   <div>
     <app-product [products]='products$'></app-product>

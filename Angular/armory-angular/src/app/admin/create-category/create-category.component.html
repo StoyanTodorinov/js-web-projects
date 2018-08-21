@@ -1,3 +1,16 @@
-<p>
-  create-category works!
-</p>
+<div class='App-body-title'>
+  <p>CREATE</p>
+</div>
+<form class='App-auth' [formGroup]='myForm' (submit)='submit()'>
+  <p>
+    <label>
+      Name
+      <input class='App-form-input' type='text' formControlName='name' />
+      <div class='App-input-error' *ngIf='name.errors?.required && name.touched'>Category name is required</div>
+      <div class='App-input-error' *ngIf='name.errors?.minlength && name.touched'>Category name must be at least 3 symbols</div>
+      <div class='App-input-error' *ngIf='name.errors?.maxlength && name.touched'>Category name must be less than 20 symbols</div>
+      <div class='App-input-error' *ngIf='name.errors?.pattern && name.touched'>Category name should start with a capital letter and consist of letters only</div>
+    </label>
+  </p>
+  <input class='App-form-submit' type='submit' [disabled]='myForm.invalid' />
+</form>

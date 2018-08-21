@@ -28,4 +28,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-//TODO CREATE CREATEPRODUCT COMPONENT
+//TODO EDIT PRODUCT COMPONENT

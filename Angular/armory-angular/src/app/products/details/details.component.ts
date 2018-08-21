@@ -42,7 +42,7 @@ export class ProductDetailsComponent implements OnInit {
       this.productId = params['productId'];
       this.addToFavoritesBtnText = this.checkAddButtonText();
       this.ajax();
-    })
+    });
     this.removeComment = this.remove.bind(this);
   }
 
@@ -65,20 +65,20 @@ export class ProductDetailsComponent implements OnInit {
     if (this.addPostCommentText === this.POST_COMMENT_TEXT) {
       if (this.comment === '') {
         this.toastr.error('You cannot submit an empty comment');
-        this.changeaddPostCommentText();
+        this.changeAddPostCommentText();
         return;
       }
       let comment = {
         text: this.comment,
         productId: this.productId,
-        author: localStorage.getItem('username')
+        author: this.authService.isLoggedIn().username
       }
       this.commentsService.createComment(comment).subscribe(comment => {
         this.comments.push(comment);
         this.toastr.success('Comment added');
       });
     }
-    this.changeaddPostCommentText();
+    this.changeAddPostCommentText();
     this.comment = '';
   }
 
@@ -137,7 +137,7 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-  changeaddPostCommentText() {
+  changeAddPostCommentText() {
     this.addPostCommentText === this.POST_COMMENT_TEXT ? this.addPostCommentText = this.NEW_COMMENT_TEXT : this.addPostCommentText = this.POST_COMMENT_TEXT;
     this.addPostCommentText === this.POST_COMMENT_TEXT ? this.showInput = true : this.showInput = false;
   }
