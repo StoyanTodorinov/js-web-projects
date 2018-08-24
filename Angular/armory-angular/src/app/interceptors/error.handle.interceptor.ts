@@ -23,7 +23,16 @@ export class ErrorHandleInterceptor implements HttpInterceptor {
     return next
       .handle(request)
       .pipe(tap((event: HttpEvent<any>) => { }, (err: any) => {
-        this.toastr.error(err.error);
+        let error = err.error;
+        if (error.errmsg) {
+          if (error.errmsg.includes('username')) {
+            this.toastr.error('Choose another username');
+          } else if (error.errmsg.includes('categories')) {
+            this.toastr.error('Category exists');
+          }
+        } else {
+          this.toastr.error(err.error);
+        }
       }))
   }
 }

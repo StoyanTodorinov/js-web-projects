@@ -22,7 +22,6 @@ export class AdminGuard implements CanActivate {
       return true;
     }
 
-    //TODO FIGURE OUT A WAY TO RENDER NOT FOUND WITHOUT CHANGING THE URL
     this.router.navigateByUrl('/notFound', { skipLocationChange: true });
     return false;
   }

@@ -27,5 +27,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-//TODO EDIT PRODUCT COMPONENT

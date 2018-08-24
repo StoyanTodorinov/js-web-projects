@@ -87,12 +87,13 @@ export class EditProductComponent implements OnInit {
   get additionalInformation() {
     return this.myForm.get('additionalInformation');
   }
-
+  // TODO FIX ADDITIONAL INFORMATION BEING EMPTY OR UNTOUCHED
   submit() {
     let product = this.myForm.value;
     product._id = this.product._id;
     if (product.additionalInformation === '') {
       product.additionalInformation = [];
+      console.log('');
     } else {
       product.additionalInformation = product.additionalInformation
         .trim()
