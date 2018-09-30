@@ -46,9 +46,7 @@ export class CreateComponent implements OnInit {
         Validators.maxLength(100)
       ]],
       additionalInformation: ['', [
-        // Validators.pattern('([a-zA-Z0-9]+),\s*([a-zA-Z0-9]+)')
-        //TODO CREATE A BETTER REGEX PATTERN
-        //(\w+:\s*(\w+|\s?)+,)+
+        Validators.pattern(/^[a-zA-Z0-9,:\s]+$/)
       ]]
     })
   }

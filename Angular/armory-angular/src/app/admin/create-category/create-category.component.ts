@@ -34,7 +34,7 @@ export class CreateCategoryComponent implements OnInit {
   submit() {
     let category = this.myForm.value;
     this.categoriesService.create(category).subscribe(data => {
-      this.toastr.success('Category created');
+      this.toastr.success(`Category ${category.name} created`);
       this.router.navigateByUrl('categories');
     });
   }

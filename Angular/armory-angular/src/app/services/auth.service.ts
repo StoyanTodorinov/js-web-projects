@@ -14,7 +14,6 @@ import {
 })
 export class AuthService {
 
-  //TODO BCRYPT THE USER
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,

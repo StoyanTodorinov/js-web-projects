@@ -53,10 +53,8 @@ export class EditProductComponent implements OnInit {
             Validators.minLength(10),
             Validators.maxLength(100)
           ]],
-          additionalInformation: [this.product.additionalInformation, [
-            // Validators.pattern('([a-zA-Z0-9]+),\s*([a-zA-Z0-9]+)')
-            //TODO CREATE A BETTER REGEX PATTERN
-            //(\w+:\s*(\w+|\s?)+,)+
+          additionalInformation: [this.formatAdditionalInformation(this.product.additionalInformation), [
+            Validators.pattern(/^[a-zA-Z0-9,:\s]+$/)
           ]]
         });
         this.formIsReady = true;
@@ -87,13 +85,16 @@ export class EditProductComponent implements OnInit {
   get additionalInformation() {
     return this.myForm.get('additionalInformation');
   }
-  // TODO FIX ADDITIONAL INFORMATION BEING EMPTY OR UNTOUCHED
+
+  formatAdditionalInformation(info) {
+    return info.join(',');
+  }
+
   submit() {
     let product = this.myForm.value;
     product._id = this.product._id;
     if (product.additionalInformation === '') {
       product.additionalInformation = [];
-      console.log('');
     } else {
       product.additionalInformation = product.additionalInformation
         .trim()

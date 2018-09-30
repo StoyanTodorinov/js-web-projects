@@ -40,7 +40,7 @@
       Addition Information
       <i>(optional)</i>
       <textarea class='App-form-input' formControlName='additionalInformation'></textarea>
-      <!-- <div class='App-input-error' *ngIf='additionalInformation.errors?.pattern && additionalInformation.touched'>Addition Information is in incorrect format (example: 'material, stainless steel')</div> -->
+      <div class='App-input-error' *ngIf='additionalInformation.errors?.pattern && additionalInformation.touched'>Addition Information is in incorrect format (example: 'material, stainless steel')</div>
     </label>
   </p>
   <input class='App-form-submit' type='submit' [disabled]='myForm.invalid'/>
