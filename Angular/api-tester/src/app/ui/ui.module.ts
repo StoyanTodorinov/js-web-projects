@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { UiRoutingModule } from './ui-routing.module';
+
 import { LayoutComponent } from './layout/layout.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { ButtonSliderComponent } from '../button-slider/button-slider.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { ButtonSliderComponent } from './shared/button-slider/button-slider.component';
+import { HomeComponent } from './home/home.component';
+import { ApiFormComponent } from './api-form/api-form.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    UiRoutingModule
   ],
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, ButtonSliderComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, ButtonSliderComponent, HomeComponent, ApiFormComponent],
   exports: [LayoutComponent]
 })
 export class UiModule { }

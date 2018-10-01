@@ -2,18 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { UiModule } from './ui/ui.module';
+import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { ApiFormComponent } from './api-form/api-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ApiFormComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    UiModule
+    UiModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
