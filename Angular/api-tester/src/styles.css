@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+.App-button-slider {
+  width: 60px;
+  height: 30px;
+  border: 3px solid black;
+  border-radius: 20px;
+  background-color: black;
+}
+
+.App-button-slider-bullet {
+  margin: 4%;
+  height: 25px;
+  width: 25px;
+  background-color: red;
+  border-radius: 20px;
+}
+
+.App-button-slider-bullet-active {
+  background-color: green;
+  margin: 4% 4% 4% 55%;
+}
