@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
 .App-button-slider {
+  margin: 5px 0 0 0;
+  padding: 0;
   width: 60px;
   height: 30px;
   border: 3px solid black;
@@ -8,14 +13,37 @@
 }
 
 .App-button-slider-bullet {
-  margin: 4%;
+  padding: 0;
+  margin: 0;
   height: 25px;
   width: 25px;
-  background-color: red;
+  background-color: grey;
   border-radius: 20px;
 }
 
 .App-button-slider-bullet-active {
-  background-color: green;
-  margin: 4% 4% 4% 55%;
+  margin: 0 0 0 55%;
+}
+
+.fa-heart {
+  color: hotpink;
+}
+
+.nav-link.disabled {
+  color: white !important;
+}
+
+.night-mode {
+  /* filter: invert(100%); */
+  background-color: #000;
+}
+
+/* The important thing here is to not invert the photos */
+.night-mode img {
+  filter: invert(100%);
+}
+
+body {
+  background-color: #fff;
+  transition: all 0.25s ease-out;
 }
