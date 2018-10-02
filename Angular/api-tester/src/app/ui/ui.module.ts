@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { UiRoutingModule } from './ui-routing.module';
 
@@ -13,7 +14,8 @@ import { ApiFormComponent } from './api-form/api-form.component';
 @NgModule({
   imports: [
     CommonModule,
-    UiRoutingModule
+    UiRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [LayoutComponent, HeaderComponent, FooterComponent, ButtonSliderComponent, HomeComponent, ApiFormComponent],
   exports: [LayoutComponent]

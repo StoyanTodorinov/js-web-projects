@@ -1,5 +1,31 @@
-<form class="needs-validation" novalidate>
-  <div class="form-row">
+<form class="needs-validation" [formGroup]="myForm" (submit)="submit()">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend mb-1">
+      <label class="input-group-text" for="inputGroupSelect01">Options</label>
+    </div>
+    <select class="custom-select" id="inputGroupSelect01">
+      <option selected>GET</option>
+      <option value="1">POST</option>
+      <option value="2">PUT</option>
+      <option value="3">DELETE</option>
+      <option value="4">PATCH</option>
+    </select>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend mb-1">
+      <label class="input-group-text" for="url">URL</label>
+    </div>
+    <input type="url" class="form-control" id="url" placeholder="Web address" formControlName='url' />
+    <div class="valid-feedback" *ngIf="url.valid && url.dirty">
+      {{addIsValidClass()}}
+      Looks good!
+    </div>
+    <div class="invalid-feedback" *ngIf="url.errors?.required && url.dirty">
+      {{addIsInvalidClass()}}
+      Provide a url.
+    </div>
+  </div>
+  <!-- <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationCustom01">First name</label>
       <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
@@ -48,11 +74,10 @@
   <div class="form-group">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" required>
-      <app-button-slider></app-button-slider>
       <label class="form-check-label" for="invalidCheck1">
         Use app key
       </label>
     </div>
-  </div>
-  <button class="btn btn-primary" type="submit">Submit</button>
+  </div> -->
+  <button class="btn btn-primary" type="submit" [disabled]='myForm.invalid'>Send request</button>
 </form>
