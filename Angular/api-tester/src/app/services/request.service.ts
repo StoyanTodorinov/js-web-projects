@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class RequestService {
     private http: HttpClient
   ) { }
 
-  makeRequest(method, url, data) {
+  makeRequest(method, url, data): Observable<Object> {
     switch (method) {
       case "GET":
         return this.http.get(url);

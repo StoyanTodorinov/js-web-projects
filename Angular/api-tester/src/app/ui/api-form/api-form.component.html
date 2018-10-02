@@ -1,83 +1,52 @@
+<h1>Test your ajax here</h1>
+<hr class="style-seven" />
 <form class="needs-validation" [formGroup]="myForm" (submit)="submit()">
   <div class="input-group mb-3">
-    <div class="input-group-prepend mb-1">
-      <label class="input-group-text" for="inputGroupSelect01">Options</label>
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="method">Options</label>
     </div>
-    <select class="custom-select" id="inputGroupSelect01">
-      <option selected>GET</option>
-      <option value="1">POST</option>
-      <option value="2">PUT</option>
-      <option value="3">DELETE</option>
-      <option value="4">PATCH</option>
+    <select class="custom-select" id="method" formControlName='method'>
+      <option value="GET">GET</option>
+      <option value="POST">POST</option>
+      <option value="PUT">PUT</option>
+      <option value="DELETE">DELETE</option>
+      <option value="PATCH">PATCH</option>
     </select>
   </div>
   <div class="input-group mb-3">
-    <div class="input-group-prepend mb-1">
+    <div class="input-group-prepend">
       <label class="input-group-text" for="url">URL</label>
     </div>
     <input type="url" class="form-control" id="url" placeholder="Web address" formControlName='url' />
     <div class="valid-feedback" *ngIf="url.valid && url.dirty">
-      {{addIsValidClass()}}
-      Looks good!
+      {{addIsValidClass(urlEl)}} Looks good!
     </div>
     <div class="invalid-feedback" *ngIf="url.errors?.required && url.dirty">
-      {{addIsInvalidClass()}}
-      Provide a url.
+      {{addIsInvalidClass(urlEl)}} Provide a url.
     </div>
   </div>
-  <!-- <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom01">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="endpoint">End point</label>
     </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationCustomUsername">Username</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend">@</span>
-        </div>
-        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend"
-          required>
-        <div class="invalid-feedback">
-          Please choose a username.
-        </div>
-      </div>
+    <input type="text" class="form-control" id="endpoint" placeholder="Additional parameters (optional)" formControlName='endpoint'
+    />
+    <div class="valid-feedback" *ngIf="endpoint.valid && endpoint.dirty">
+      {{addIsValidClass(endpointEl)}} Looks good!
     </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationCustomUsername">Username</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend">@</span>
-        </div>
-        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend"
-          required>
-        <div class="invalid-feedback">
-          Please choose a username.
-        </div>
-      </div>
+    <div class="invalid-feedback" *ngIf="endpoint.errors?.hasSpaces && endpoint.dirty">
+      {{addIsInvalidClass(endpointEl)}} Spaces aren't allowed.
     </div>
   </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-      <label class="form-check-label" for="invalidCheck">
-        Use app secret
-      </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck1" required>
-      <label class="form-check-label" for="invalidCheck1">
-        Use app key
-      </label>
-    </div>
-  </div> -->
   <button class="btn btn-primary" type="submit" [disabled]='myForm.invalid'>Send request</button>
 </form>
+<div *ngIf='data'>
+  <div class="mb-1 mt-4 btn-group" role="group">
+    <button type="button" class="btn btn-secondary" (click)="changeDataFormat('Pretty')">Pretty</button>
+    <button type="button" class="btn btn-secondary" (click)="changeDataFormat('Raw')">Raw</button>
+    <button type="button" class="btn btn-secondary" (click)="changeDataFormat('Table')">Table</button>
+  </div>
+  <div class="rounded bg-white">
+    <pre>{{data}}</pre>
+  </div>
+</div>

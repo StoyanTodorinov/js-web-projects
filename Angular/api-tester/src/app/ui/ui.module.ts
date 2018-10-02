@@ -17,7 +17,14 @@ import { ApiFormComponent } from './api-form/api-form.component';
     UiRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, ButtonSliderComponent, HomeComponent, ApiFormComponent],
+  declarations: [
+    LayoutComponent,
+    HeaderComponent,
+    FooterComponent,
+    ButtonSliderComponent,
+    HomeComponent,
+    ApiFormComponent
+  ],
   exports: [LayoutComponent]
 })
 export class UiModule { }
