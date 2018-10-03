@@ -17,7 +17,7 @@ import { RequestService } from './services/request.service';
     BrowserModule,
     HttpClientModule,
     UiModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [RequestService],
   bootstrap: [AppComponent]

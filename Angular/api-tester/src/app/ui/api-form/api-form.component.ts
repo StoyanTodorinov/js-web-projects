@@ -3,6 +3,7 @@ import { RequestService } from '../../services/request.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { noSpaceValidator } from '../../validators/has-space-validator';
+import { JsonSyntaxHighlightService } from '../../services/json-syntax-highlight.service';
 
 @Component({
   selector: 'app-api-form',
@@ -14,12 +15,13 @@ export class ApiFormComponent implements OnInit {
   myForm: FormGroup;
   urlEl: any;
   endpointEl: any;
-  _data: Object;
+  data: Object;
   dataFormat: String = 'Pretty';
 
   constructor(
     private fb: FormBuilder,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private jsonSyntaxHighlightService: JsonSyntaxHighlightService
   ) { }
 
   ngOnInit() {
@@ -37,14 +39,12 @@ export class ApiFormComponent implements OnInit {
     this.endpointEl = document.getElementById('endpoint');
   }
 
-  private get data() {
+  private getData() {
     switch (this.dataFormat) {
       case "Pretty":
-        return JSON.stringify(this._data, null, 4);
-      case "Raw":
-        return JSON.stringify(this._data);
+        return this.jsonSyntaxHighlightService.syntaxHighlight(JSON.stringify(this.data, null, 4));
       case "Table":
-        return JSON.stringify('Hello');
+        return this.data;
     }
   }
 
@@ -74,7 +74,19 @@ export class ApiFormComponent implements OnInit {
     this.dataFormat = newDataFormat;
   }
 
+  private download() {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:application/json;charset=utf-8,'
+      + encodeURIComponent(JSON.stringify(this.data, null, 2)));
+    element.setAttribute('download', 'result.json');
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  }
+
   private submit() {
+    this.data = null;
     let endpoint = this.endpoint.value;
     let base_url = this.url.value;
     localStorage.setItem("url", base_url);
@@ -82,7 +94,9 @@ export class ApiFormComponent implements OnInit {
     let url = base_url + endpoint;
 
     this.requestService.makeRequest(method, url, null).subscribe(data => {
-      this._data = data;
+      this.data = data;
     });
   }
 }
+
+//TODO REMOVE SHADOW FROM VALIDATORS

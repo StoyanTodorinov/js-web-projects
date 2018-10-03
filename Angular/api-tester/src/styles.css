@@ -34,11 +34,9 @@
 }
 
 .night-mode {
-  /* filter: invert(100%); */
   background-color: #000;
 }
 
-/* The important thing here is to not invert the photos */
 .night-mode img {
   filter: invert(100%);
 }
@@ -69,7 +67,7 @@ hr.style-seven {
   border-radius: 20px;
 }
 
-hr.style-seven:before { /* Not really supposed to work, but does */
+hr.style-seven:before {
   display: block;
   content: "";
   height: 30px;
@@ -81,7 +79,7 @@ hr.style-seven:before { /* Not really supposed to work, but does */
 }
 
 hr.style-eight {
-  overflow: visible; /* For IE */
+  overflow: visible;
   padding: 0;
   border: none;
   border-top: medium double #333;
@@ -95,7 +93,6 @@ hr.style-eight:after {
   top: -0.7em;
   font-size: 1.5em;
   padding: 0 0.25em;
-  /* background: lightgrey; */
 }
 
 form > div.input-group {
@@ -108,4 +105,33 @@ form > div.input-group {
 
 .rounded {
   filter: drop-shadow(3px 3px 3px #333);  
+}
+
+.string {
+   color: rgb(31, 100, 14);
+}
+
+.number {
+  color: darkgoldenrod; 
+}
+
+.boolean {
+   color: blue; 
+}
+
+.null { 
+  color: magenta; 
+}
+
+.key { 
+  color: indigo; 
+}
+
+.invalid-feedback {
+  filter: drop-shadow(0px 0px 0px yellow) !important;
+}
+
+.valid-feedback {
+  background-color: white;
+  float: left;
 }

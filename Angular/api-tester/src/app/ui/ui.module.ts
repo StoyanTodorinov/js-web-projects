@@ -10,6 +10,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ButtonSliderComponent } from './shared/button-slider/button-slider.component';
 import { HomeComponent } from './home/home.component';
 import { ApiFormComponent } from './api-form/api-form.component';
+import { DataTableComponent } from './data-table/data-table.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ApiFormComponent } from './api-form/api-form.component';
     FooterComponent,
     ButtonSliderComponent,
     HomeComponent,
-    ApiFormComponent
+    ApiFormComponent,
+    DataTableComponent
   ],
   exports: [LayoutComponent]
 })

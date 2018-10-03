@@ -41,12 +41,15 @@
   <button class="btn btn-primary" type="submit" [disabled]='myForm.invalid'>Send request</button>
 </form>
 <div *ngIf='data'>
-  <div class="mb-1 mt-4 btn-group" role="group">
+  <div class="mb-2 mt-4 btn-group" role="group">
     <button type="button" class="btn btn-secondary" (click)="changeDataFormat('Pretty')">Pretty</button>
-    <button type="button" class="btn btn-secondary" (click)="changeDataFormat('Raw')">Raw</button>
     <button type="button" class="btn btn-secondary" (click)="changeDataFormat('Table')">Table</button>
   </div>
   <div class="rounded bg-white">
-    <pre>{{data}}</pre>
+    <pre class="code-pre" *ngIf='dataFormat !== "Table"' [innerHTML]="getData()"></pre>
+    <div *ngIf='dataFormat === "Table"'>
+      <app-data-table [data]='getData()'></app-data-table>
+    </div>
   </div>
+  <button class="btn btn-primary" (click)='download()'>Download json file</button>
 </div>
