@@ -1,6 +1,7 @@
 <h1>Test your ajax here</h1>
 <hr class="style-seven" />
 <form class="needs-validation" [formGroup]="myForm" (submit)="submit()">
+  <!-- METHOD -->
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <label class="input-group-text" for="method">Options</label>
@@ -13,18 +14,20 @@
       <option value="PATCH">PATCH</option>
     </select>
   </div>
+  <!-- URL -->
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <label class="input-group-text" for="url">URL</label>
     </div>
     <input type="url" class="form-control" id="url" placeholder="Web address" formControlName='url' />
     <div class="valid-feedback" *ngIf="url.valid && url.dirty">
-      {{addIsValidClass(urlEl)}} Looks good!
+      {{addIsValidClass(urlEl)}}
     </div>
     <div class="invalid-feedback" *ngIf="url.errors?.required && url.dirty">
-      {{addIsInvalidClass(urlEl)}} Provide a url.
+      {{addIsInvalidClass(urlEl)}}
     </div>
   </div>
+  <!-- ENDPOINT -->
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <label class="input-group-text" for="endpoint">End point</label>
@@ -32,14 +35,29 @@
     <input type="text" class="form-control" id="endpoint" placeholder="Additional parameters (optional)" formControlName='endpoint'
     />
     <div class="valid-feedback" *ngIf="endpoint.valid && endpoint.dirty">
-      {{addIsValidClass(endpointEl)}} Looks good!
+      {{addIsValidClass(endpointEl)}}
     </div>
     <div class="invalid-feedback" *ngIf="endpoint.errors?.hasSpaces && endpoint.dirty">
-      {{addIsInvalidClass(endpointEl)}} Spaces aren't allowed.
+      {{addIsInvalidClass(endpointEl)}}
     </div>
   </div>
-  <button class="btn btn-primary" type="submit" [disabled]='myForm.invalid'>Send request</button>
+  <!-- HEADERS -->
+  <div class="input-group mb-3" *ngFor="let item of numberOfInputs; let i = index;">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Header #{{i + 1}}</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Example: api_key">
+    <input type="text" class="form-control" placeholder="Example: abcdef12345">
+    <div class="input-group-append">
+      <a class="btn btn-secondary input-group-text" (click)='removeHeaderInput(item)'>x</a>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]='myForm.invalid' title="Click to see the results">Send request</button>
+  <button type="button" class="btn btn-primary btn-circle float-right" title="Add headers" (click)='appendInputField()'>
+    <b>+</b>
+  </button>
 </form>
+<!-- RESULT -->
 <div *ngIf='data'>
   <div class="mb-2 mt-4 btn-group" role="group">
     <button type="button" class="btn btn-secondary" (click)="changeDataFormat('Pretty')">Pretty</button>

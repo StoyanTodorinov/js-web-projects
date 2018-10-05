@@ -12,10 +12,12 @@
       <th scope="row">{{i + 1}}</th>
       <td>{{item.key}}</td>
       <td>
-        <code>{{item.value}}</code> 
+        <code class="{{i + 1}}" #valueTd>{{item.value}}</code>
       </td>
-      <td class="text-center">
-        <i class="fa fa-clipboard resize-hover"></i>
+      <td class="align-middle text-center customTooltip" (click)="copy(item.value)">
+        <i class="fa fa-clipboard resize-hover">
+          <span class="customTooltiptext">{{toolTipText}}</span>
+        </i>
       </td>
     </tr>
   </tbody>

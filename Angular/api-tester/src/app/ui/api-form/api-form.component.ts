@@ -15,8 +15,10 @@ export class ApiFormComponent implements OnInit {
   myForm: FormGroup;
   urlEl: any;
   endpointEl: any;
-  data: Object;
-  dataFormat: String = 'Pretty';
+  data: object;
+  dataFormat: string = 'Pretty';
+  numberOfInputs: Array<number> = [];
+  id: number = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -74,6 +76,14 @@ export class ApiFormComponent implements OnInit {
     this.dataFormat = newDataFormat;
   }
 
+  private appendInputField() {
+    this.numberOfInputs.push(this.id++);
+  }
+
+  private removeHeaderInput(item) {
+    this.numberOfInputs = this.numberOfInputs.filter(x => x !== item);
+  }
+
   private download() {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:application/json;charset=utf-8,'
@@ -98,5 +108,3 @@ export class ApiFormComponent implements OnInit {
     });
   }
 }
-
-//TODO REMOVE SHADOW FROM VALIDATORS
